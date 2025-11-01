@@ -88,19 +88,21 @@ export default function Navbar() {
                     {/* Hover underline animation */}
                     <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-[calc(100%-2rem)] scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100"></span>
                   </NavLink>
+                  
                 ))}
+                  <Link
+                    to="/login"
+                    className="hidden md:inline-flex btn btn-md btn-primary rounded-full items-center justify-center gap-1.5 shadow-sm transition-all duration-200"
+                  >
+                    <UserCircleIcon className="h-5 w-5" />
+                    Login / Signup
+                  </Link>
               </div>
 
               {/* Right side buttons */}
               <div className="flex items-center gap-4">
                 {/* Login/Signup Button - Desktop */}
-                <Link
-                  to="/login"
-                  className="hidden lg:inline-flex btn btn-md btn-primary rounded-full items-center justify-center gap-1.5 shadow-sm transition-all duration-200"
-                >
-                  <UserCircleIcon className="h-5 w-5" />
-                  Login / Signup
-                </Link>
+                
 
                 {/* Mobile menu button */}
                 <div className="flex lg:hidden">

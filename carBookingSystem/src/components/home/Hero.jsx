@@ -67,42 +67,39 @@ const HeroSection = () => {
     priceRanges.find((o) => o.value === searchData.price)?.label;
 
   return (
-  <div className="h-[90vh] w-full relative overflow-hidden bg-surface">
-      <div className="absolute inset-0 z-0 flex items-end justify-center pb-0">
+    <div className="h-[90vh] w-full relative overflow-hidden bg-surface">
+      <div className="absolute inset-0 z-0 flex items-end justify-center pb-4 sm:pb-0">
         <img
           src={background}
           alt="Hero Image"
-          className="w-[70%] h-auto object-contain"
-          style={{ maxHeight: "50vh" }}
+          className="w-full sm:w-[70%] h-auto object-contain max-h-[40vh] sm:max-h-[50vh]"
         />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-start h-full px-4 pt-20 md:pt-32 text-center">
-        <p className="text-sm md:text-base text-gray-600 mb-4">
+      <div className="relative z-10 flex flex-col items-center justify-start h-full px-2 sm:px-4 pt-8 sm:pt-16 md:pt-20 lg:pt-32 text-center">
+        <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-2 sm:mb-4 px-2">
           Find cars for sale and for rent near you
         </p>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-8">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 mb-4 sm:mb-6 md:mb-8 px-2">
           Find Your Dream Car
         </h1>
 
         {/* Enhanced Search Bar with Headless UI */}
-        <div className="w-full max-w-5xl bg-white/20 rounded-lg sm:rounded-full shadow-xl flex flex-col sm:flex-row items-stretch gap-2 p-2">
+        <div className="w-full max-w-md sm:max-w-2xl md:max-w-4xl lg:max-w-5xl bg-white/20 rounded-lg sm:rounded-full shadow-xl flex flex-col sm:flex-row items-stretch gap-1 sm:gap-2 p-1 sm:p-2">
           
           {/* Condition Dropdown */}
           <Menu as="div" className="flex-1 relative">
-            {/* UPDATED: Cleaned up button styling */}
-            <MenuButton className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-lg sm:rounded-full bg-transparent p-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">
+            <MenuButton className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-md sm:rounded-full bg-transparent p-2 sm:p-3 text-xs sm:text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">
               {getConditionLabel()}
               <ChevronDownIcon
-                className="-mr-1 h-5 w-5 text-gray-400"
+                className="-mr-1 h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
                 aria-hidden="true"
               />
             </MenuButton>
-            {/* UPDATED: Added backdrop blur, transparency, and new styling */}
             <MenuItems
               transition
-              className="absolute left-0 z-10 mt-2 w-full sm:w-56 origin-top-right rounded-xl bg-white/60 backdrop-blur-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+              className="absolute left-0 z-10 mt-1 sm:mt-2 w-full sm:w-48 md:w-56 origin-top-right rounded-xl bg-white/60 backdrop-blur-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
             >
               <div className="py-1">
                 {conditionOptions.map((option) => (
@@ -111,7 +108,7 @@ const HeroSection = () => {
                       onClick={() =>
                         setSearchData({ ...searchData, condition: option.value })
                       }
-                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-primary data-focus:text-white"
+                      className="text-gray-900 group flex w-full items-center rounded-md px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm data-focus:bg-primary data-focus:text-white"
                     >
                       {option.label}
                     </button>
@@ -123,23 +120,23 @@ const HeroSection = () => {
 
           {/* Make Dropdown */}
           <Menu as="div" className="flex-1 relative">
-            <MenuButton className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-lg sm:rounded-full bg-transparent p-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">
+            <MenuButton className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-md sm:rounded-full bg-transparent p-2 sm:p-3 text-xs sm:text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">
               {searchData.make || "Any Makes"}
               <ChevronDownIcon
-                className="-mr-1 h-5 w-5 text-gray-400"
+                className="-mr-1 h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
                 aria-hidden="true"
               />
             </MenuButton>
             <MenuItems
               transition
-              className="absolute left-0 z-10 mt-2 w-full sm:w-56 origin-top-right rounded-xl bg-white/60 backdrop-blur-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+              className="absolute left-0 z-10 mt-1 sm:mt-2 w-full sm:w-48 md:w-56 origin-top-right rounded-xl bg-white/60 backdrop-blur-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
             >
               <div className="py-1">
                 {carMakes.map((car) => (
                   <MenuItem key={car.id}>
                     <button
                       onClick={() => handleMakeChange(car.name)}
-                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-primary data-focus:text-white"
+                      className="text-gray-900 group flex w-full items-center rounded-md px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm data-focus:bg-primary data-focus:text-white"
                     >
                       {car.name}
                     </button>
@@ -153,17 +150,17 @@ const HeroSection = () => {
           <Menu as="div" className="flex-1 relative">
             <MenuButton
               disabled={!selectedMake}
-              className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-lg sm:rounded-full bg-transparent p-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 disabled:bg-gray-50/50 disabled:cursor-not-allowed"
+              className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-md sm:rounded-full bg-transparent p-2 sm:p-3 text-xs sm:text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 disabled:bg-gray-50/50 disabled:cursor-not-allowed disabled:text-gray-400"
             >
               {searchData.model || "Any Models"}
               <ChevronDownIcon
-                className="-mr-1 h-5 w-5 text-gray-400"
+                className="-mr-1 h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
                 aria-hidden="true"
               />
             </MenuButton>
             <MenuItems
               transition
-              className="absolute left-0 z-10 mt-2 w-full sm:w-56 origin-top-right rounded-xl bg-white/60 backdrop-blur-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+              className="absolute left-0 z-10 mt-1 sm:mt-2 w-full sm:w-48 md:w-56 origin-top-right rounded-xl bg-white/60 backdrop-blur-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
             >
               <div className="py-1">
                 {availableModels.map((model, index) => (
@@ -172,7 +169,7 @@ const HeroSection = () => {
                       onClick={() =>
                         setSearchData({ ...searchData, model: model })
                       }
-                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-primary data-focus:text-white"
+                      className="text-gray-900 group flex w-full items-center rounded-md px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm data-focus:bg-primary data-focus:text-white"
                     >
                       {model}
                     </button>
@@ -184,16 +181,16 @@ const HeroSection = () => {
 
           {/* Price Dropdown */}
           <Menu as="div" className="flex-1 relative">
-            <MenuButton className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-lg sm:rounded-full bg-transparent p-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">
+            <MenuButton className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-md sm:rounded-full bg-transparent p-2 sm:p-3 text-xs sm:text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">
               {getPriceLabel()}
               <ChevronDownIcon
-                className="-mr-1 h-5 w-5 text-gray-400"
+                className="-mr-1 h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
                 aria-hidden="true"
               />
             </MenuButton>
             <MenuItems
               transition
-              className="absolute left-0 z-10 mt-2 w-full sm:w-56 origin-top-right rounded-xl bg-white/80 backdrop-blur-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+              className="absolute left-0 z-10 mt-1 sm:mt-2 w-full sm:w-48 md:w-56 origin-top-right rounded-xl bg-white/60 backdrop-blur-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
             >
               <div className="py-1">
                 {priceRanges.map((range) => (
@@ -202,7 +199,7 @@ const HeroSection = () => {
                       onClick={() =>
                         setSearchData({ ...searchData, price: range.value })
                       }
-                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-primary data-focus:text-white"
+                      className="text-gray-900 group flex w-full items-center rounded-md px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm data-focus:bg-primary data-focus:text-white"
                     >
                       {range.label}
                     </button>
@@ -215,11 +212,11 @@ const HeroSection = () => {
           {/* Search Button */}
           <button
             onClick={handleSearch}
-            className="btn btn-md btn-primary rounded-full transition-all duration-300 shadow-lg flex items-center justify-center p-3"
+            className="btn btn-sm sm:btn-md btn-primary rounded-full sm:rounded-full transition-all duration-300 shadow-lg flex items-center justify-center p-2 sm:p-3 min-w-[44px] sm:min-w-0"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-4 w-4 sm:h-5 sm:w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
