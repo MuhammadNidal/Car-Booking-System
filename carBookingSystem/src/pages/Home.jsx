@@ -15,9 +15,9 @@ const Home = () => {
       <HeroSection />
       <LogosSection />
       <CallToActionSection />
+      <Slider />
       <IssuesSections />
       <OurServices />
-      <Slider />
       <StatsSection />
       <TestimonialSection />
       <ConsultationSection />

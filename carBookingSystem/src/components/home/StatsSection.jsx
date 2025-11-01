@@ -1,21 +1,79 @@
-import React from 'react'
+import React from "react";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
-const StatsSection = () => (
-  <section className="py-12 bg-[#f7faf7]">
-    <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-      {[
-        {label: 'Cars Listed', value: '1.2k'},
-        {label: 'Happy Customers', value: '5k+'},
-        {label: 'Dealers', value: '120'},
-        {label: 'Years', value: '10+'},
-      ].map(s => (
-        <div key={s.label} className="p-6 bg-white rounded-lg shadow">
-          <div className="text-2xl font-bold">{s.value}</div>
-          <div className="text-sm text-gray-600">{s.label}</div>
-        </div>
-      ))}
-    </div>
-  </section>
-)
+const StatsSection = () => {
+    const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
-export default StatsSection
+    return (
+        <section className="py-16 bg-white">
+            <div className="max-w-6xl mx-auto px-4">
+                {/* Grid container */}
+                <div
+                    ref={ref}
+                    className="grid grid-cols-1 gap-8 text-center sm:grid-cols-2 lg:grid-cols-4"
+                >
+                    {/* === Animated Stat === */}
+                    <div>
+                        <h2 className="text-6xl font-extrabold text-gray-900 tracking-tight">
+                            {inView ? (
+                                <CountUp start={0} end={1500} duration={3} separator="," />
+                            ) : (
+                                "0"
+                            )}
+                            <span className="text-blue-500 ml-1">+</span>
+                        </h2>
+                        <p className="mt-1 text-sm font-semibold text-gray-500 tracking-wide uppercase">
+                            Total Cars
+                        </p>
+                    </div>
+
+                    {/* === Static Stats === */}
+                    <div>
+                        <h2 className="text-6xl font-extrabold text-gray-900 tracking-tight">
+                        {inView ? (
+                            <CountUp start={0} end={5000} duration={3} separator="," />
+                        ) : (
+                            "0"
+                        )}
+                        <span className="text-blue-500 ml-1">k+</span>
+                        </h2>
+                        <p className="mt-1 text-sm font-semibold text-gray-500 tracking-wide uppercase">
+                            Happy Customers
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 className="text-6xl font-extrabold text-gray-900 tracking-tight">
+                        {inView ? (
+                            <CountUp start={0} end={120} duration={3} separator="," />
+                        ) : (
+                            "0"
+                        )}
+                        <span className="text-blue-500 ml-1">+</span>
+                        </h2>
+                        <p className="mt-1 text-sm font-semibold text-gray-500 tracking-wide uppercase">
+                            Dealers
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 className="text-6xl font-extrabold text-gray-900 tracking-tight">
+                        {inView ? (
+                            <CountUp start={0} end={3} duration={3} separator="," />
+                        ) : (
+                            "0"
+                        )}
+                        <span className="text-blue-500 ml-1">+</span>
+                        </h2>
+                        <p className="mt-1 text-sm font-semibold text-gray-500 tracking-wide uppercase">
+                            Years
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default StatsSection;
