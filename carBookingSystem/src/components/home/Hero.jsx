@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import background from "/src/assets/slider51.png.webp";
 
+// Imports from Headless UI
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+// Import the icon from the standard v2.0 heroicons library
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+
 const HeroSection = () => {
-  // Sample car data
+  // --- Data Arrays (These are necessary for MenuItems to map over) ---
   const carMakes = [
     {
       id: 1,
@@ -33,6 +38,7 @@ const HeroSection = () => {
     { id: 3, label: "Certified Pre-Owned", value: "certified" },
   ];
 
+  // --- State ---
   const [selectedMake, setSelectedMake] = useState("");
   const [availableModels, setAvailableModels] = useState([]);
   const [searchData, setSearchData] = useState({
@@ -42,19 +48,23 @@ const HeroSection = () => {
     price: "all",
   });
 
-  const handleMakeChange = (e) => {
-    const makeValue = e.target.value;
+  // --- Event Handlers ---
+  const handleMakeChange = (makeValue) => {
     setSelectedMake(makeValue);
     setSearchData({ ...searchData, make: makeValue, model: "" });
-
     const selectedCar = carMakes.find((car) => car.name === makeValue);
     setAvailableModels(selectedCar ? selectedCar.models : []);
   };
 
   const handleSearch = () => {
     console.log("Search initiated with:", searchData);
-    // Add your search logic here
   };
+
+  // Helper to get the display label from the selected value
+  const getConditionLabel = () =>
+    conditionOptions.find((o) => o.value === searchData.condition)?.label;
+  const getPriceLabel = () =>
+    priceRanges.find((o) => o.value === searchData.price)?.label;
 
   return (
     <div className="h-[90vh] w-full relative overflow-hidden bg-[#EEF1FB]">
@@ -76,69 +86,136 @@ const HeroSection = () => {
           Find Your Dream Car
         </h1>
 
-        {/* Enhanced Search Bar */}
-        {/* UPDATED: Added rounded-lg for mobile, sm:rounded-full for desktop */}
-        <div className="w-full max-w-5xl bg-white rounded-lg sm:rounded-full shadow-xl flex flex-col sm:flex-row items-stretch gap-2 p-2">
-          <select
-            className="flex-1 p-3 rounded-lg sm:rounded-full border-none outline-none text-gray-700 text-sm sm:text-base bg-transparent cursor-pointer"
-            value={searchData.condition}
-            onChange={(e) =>
-              setSearchData({ ...searchData, condition: e.target.value })
-            }
-          >
-            {conditionOptions.map((option) => (
-              <option key={option.id} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+        {/* Enhanced Search Bar with Headless UI */}
+        <div className="w-full max-w-5xl bg-white/20 rounded-lg sm:rounded-full shadow-xl flex flex-col sm:flex-row items-stretch gap-2 p-2">
+          
+          {/* Condition Dropdown */}
+          <Menu as="div" className="flex-1 relative">
+            {/* UPDATED: Cleaned up button styling */}
+            <MenuButton className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-lg sm:rounded-full bg-transparent p-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">
+              {getConditionLabel()}
+              <ChevronDownIcon
+                className="-mr-1 h-5 w-5 text-gray-400"
+                aria-hidden="true"
+              />
+            </MenuButton>
+            {/* UPDATED: Added backdrop blur, transparency, and new styling */}
+            <MenuItems
+              transition
+              className="absolute left-0 z-10 mt-2 w-full sm:w-56 origin-top-right rounded-xl bg-white/60 backdrop-blur-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+            >
+              <div className="py-1">
+                {conditionOptions.map((option) => (
+                  <MenuItem key={option.id}>
+                    <button
+                      onClick={() =>
+                        setSearchData({ ...searchData, condition: option.value })
+                      }
+                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-blue-600 data-focus:text-white"
+                    >
+                      {option.label}
+                    </button>
+                  </MenuItem>
+                ))}
+              </div>
+            </MenuItems>
+          </Menu>
 
-          <select
-            className="flex-1 p-3 rounded-lg sm:rounded-full border-none outline-none text-gray-700 text-sm sm:text-base bg-transparent cursor-pointer"
-            value={searchData.make}
-            onChange={handleMakeChange}
-          >
-            <option value="">Any Makes</option>
-            {carMakes.map((car) => (
-              <option key={car.id} value={car.name}>
-                {car.name}
-              </option>
-            ))}
-          </select>
+          {/* Make Dropdown */}
+          <Menu as="div" className="flex-1 relative">
+            <MenuButton className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-lg sm:rounded-full bg-transparent p-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">
+              {searchData.make || "Any Makes"}
+              <ChevronDownIcon
+                className="-mr-1 h-5 w-5 text-gray-400"
+                aria-hidden="true"
+              />
+            </MenuButton>
+            <MenuItems
+              transition
+              className="absolute left-0 z-10 mt-2 w-full sm:w-56 origin-top-right rounded-xl bg-white/60 backdrop-blur-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+            >
+              <div className="py-1">
+                {carMakes.map((car) => (
+                  <MenuItem key={car.id}>
+                    <button
+                      onClick={() => handleMakeChange(car.name)}
+                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-blue-600 data-focus:text-white"
+                    >
+                      {car.name}
+                    </button>
+                  </MenuItem>
+                ))}
+              </div>
+            </MenuItems>
+          </Menu>
 
-          <select
-            className="flex-1 p-3 rounded-lg sm:rounded-full border-none outline-none text-gray-700 text-sm sm:text-base bg-transparent cursor-pointer"
-            value={searchData.model}
-            onChange={(e) =>
-              setSearchData({ ...searchData, model: e.target.value })
-            }
-            disabled={!selectedMake}
-          >
-            <option value="">Any Models</option>
-            {availableModels.map((model, index) => (
-              <option key={index} value={model}>
-                {model}
-              </option>
-            ))}
-          </select>
+          {/* Model Dropdown */}
+          <Menu as="div" className="flex-1 relative">
+            <MenuButton
+              disabled={!selectedMake}
+              className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-lg sm:rounded-full bg-transparent p-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 disabled:bg-gray-50/50 disabled:cursor-not-allowed"
+            >
+              {searchData.model || "Any Models"}
+              <ChevronDownIcon
+                className="-mr-1 h-5 w-5 text-gray-400"
+                aria-hidden="true"
+              />
+            </MenuButton>
+            <MenuItems
+              transition
+              className="absolute left-0 z-10 mt-2 w-full sm:w-56 origin-top-right rounded-xl bg-white/60 backdrop-blur-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+            >
+              <div className="py-1">
+                {availableModels.map((model, index) => (
+                  <MenuItem key={index}>
+                    <button
+                      onClick={() =>
+                        setSearchData({ ...searchData, model: model })
+                      }
+                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-blue-600 data-focus:text-white"
+                    >
+                      {model}
+                    </button>
+                  </MenuItem>
+                ))}
+              </div>
+            </MenuItems>
+          </Menu>
 
-          {/* UPDATED: Removed the wrapping div for better flex alignment */}
-          <select
-            className="flex-1 p-3 rounded-lg sm:rounded-full border-none outline-none text-gray-700 text-sm sm:text-base bg-transparent cursor-pointer"
-            value={searchData.price}
-            onChange={(e) =>
-              setSearchData({ ...searchData, price: e.target.value })
-            }
-          >
-            {priceRanges.map((range) => (
-              <option key={range.id} value={range.value}>
-                {range.label}
-              </option>
-            ))}
-          </select>
+          {/* Price Dropdown */}
+          <Menu as="div" className="flex-1 relative">
+            <MenuButton className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-lg sm:rounded-full bg-transparent p-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">
+              {getPriceLabel()}
+              <ChevronDownIcon
+                className="-mr-1 h-5 w-5 text-gray-400"
+                aria-hidden="true"
+              />
+            </MenuButton>
+            <MenuItems
+              transition
+              className="absolute left-0 z-10 mt-2 w-full sm:w-56 origin-top-right rounded-xl bg-white/80 backdrop-blur-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+            >
+              <div className="py-1">
+                {priceRanges.map((range) => (
+                  <MenuItem key={range.id}>
+                    <button
+                      onClick={() =>
+                        setSearchData({ ...searchData, price: range.value })
+                      }
+                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-blue-600 data-focus:text-white"
+                    >
+                      {range.label}
+                    </button>
+                  </MenuItem>
+                ))}
+              </div>
+            </MenuItems>
+          </Menu>
+
+          {/* Search Button */}
           <button
             onClick={handleSearch}
-            className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-lg sm:rounded-full transition-all duration-300 hover:scale-110 shadow-lg flex items-center justify-center"
+            className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full sm:rounded-full transition-all duration-300 cu shadow-lg flex items-center justify-center"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
