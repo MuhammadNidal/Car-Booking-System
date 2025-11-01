@@ -67,7 +67,7 @@ const HeroSection = () => {
     priceRanges.find((o) => o.value === searchData.price)?.label;
 
   return (
-    <div className="h-[90vh] w-full relative overflow-hidden bg-[#EEF1FB]">
+  <div className="h-[90vh] w-full relative overflow-hidden bg-surface">
       <div className="absolute inset-0 z-0 flex items-end justify-center pb-0">
         <img
           src={background}
@@ -111,7 +111,7 @@ const HeroSection = () => {
                       onClick={() =>
                         setSearchData({ ...searchData, condition: option.value })
                       }
-                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-blue-600 data-focus:text-white"
+                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-primary data-focus:text-white"
                     >
                       {option.label}
                     </button>
@@ -139,7 +139,7 @@ const HeroSection = () => {
                   <MenuItem key={car.id}>
                     <button
                       onClick={() => handleMakeChange(car.name)}
-                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-blue-600 data-focus:text-white"
+                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-primary data-focus:text-white"
                     >
                       {car.name}
                     </button>
@@ -172,7 +172,7 @@ const HeroSection = () => {
                       onClick={() =>
                         setSearchData({ ...searchData, model: model })
                       }
-                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-blue-600 data-focus:text-white"
+                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-primary data-focus:text-white"
                     >
                       {model}
                     </button>
@@ -202,7 +202,7 @@ const HeroSection = () => {
                       onClick={() =>
                         setSearchData({ ...searchData, price: range.value })
                       }
-                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-blue-600 data-focus:text-white"
+                      className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-primary data-focus:text-white"
                     >
                       {range.label}
                     </button>
@@ -215,7 +215,7 @@ const HeroSection = () => {
           {/* Search Button */}
           <button
             onClick={handleSearch}
-            className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full sm:rounded-full transition-all duration-300 cu shadow-lg flex items-center justify-center"
+            className="btn btn-md btn-primary rounded-full transition-all duration-300 shadow-lg flex items-center justify-center p-3"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

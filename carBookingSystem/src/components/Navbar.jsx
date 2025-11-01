@@ -37,9 +37,7 @@ export default function Navbar() {
               <div className="flex items-center">
                 <Link to="/" className="flex flex-shrink-0 items-center gap-2 group transition-opacity duration-300 hover:opacity-80">
                   <img src={logo} alt="" width={"50"} />
-                  <span className="font-bold text-xl bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent whitespace-nowrap">
-                    CarDealer
-                  </span>
+                  <span className="font-bold text-xl text-primary whitespace-nowrap">CarDealer</span>
                 </Link>
               </div>
 
@@ -48,7 +46,7 @@ export default function Navbar() {
                 
                 {/* Buy Cars Dropdown */}
                 <Menu as="div" className="relative">
-                  <MenuButton className="group inline-flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 relative">
+                  <MenuButton className="group inline-flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors duration-200 focus:outline-none relative">
                     Buy
                     <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                     {/* Hover underline animation */}
@@ -64,7 +62,7 @@ export default function Navbar() {
                         <MenuItem key={item.name}>
                           <Link
                             to={item.href}
-                            className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-blue-600 data-focus:text-white transition-colors duration-150"
+                            className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-primary data-focus:text-white transition-colors duration-150"
                           >
                             {item.name}
                           </Link>
@@ -81,14 +79,14 @@ export default function Navbar() {
                     to={item.href}
                     className={({ isActive }) => classNames(
                       isActive 
-                        ? 'bg-blue-600 text-white' 
+                        ? 'bg-primary text-white' 
                         : 'text-gray-700 hover:bg-gray-100',
                       'group relative rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-200'
                     )}
                   >
                     {item.name}
                     {/* Hover underline animation */}
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-[calc(100%-2rem)] scale-x-0 bg-blue-600 transition-transform duration-300 group-hover:scale-x-100"></span>
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-[calc(100%-2rem)] scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100"></span>
                   </NavLink>
                 ))}
               </div>
@@ -98,7 +96,7 @@ export default function Navbar() {
                 {/* Login/Signup Button - Desktop */}
                 <Link
                   to="/login"
-                  className="hidden lg:inline-flex items-center justify-center gap-1.5 rounded-full bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200"
+                  className="hidden lg:inline-flex btn btn-md btn-primary rounded-full items-center justify-center gap-1.5 shadow-sm transition-all duration-200"
                 >
                   <UserCircleIcon className="h-5 w-5" />
                   Login / Signup
@@ -106,7 +104,7 @@ export default function Navbar() {
 
                 {/* Mobile menu button */}
                 <div className="flex lg:hidden">
-                  <DisclosureButton className="inline-flex items-center justify-center rounded-lg p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors duration-200">
+                    <DisclosureButton className="inline-flex items-center justify-center rounded-lg p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-colors duration-200">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
