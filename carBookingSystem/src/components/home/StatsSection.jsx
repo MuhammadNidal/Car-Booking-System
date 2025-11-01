@@ -53,7 +53,7 @@ const StatsSection = () => {
                         <span className="text-blue-500 ml-1">+</span>
                         </h2>
                         <p className="mt-1 text-sm font-semibold text-gray-500 tracking-wide uppercase">
-                            Dealers
+                            Dealer's
                         </p>
                     </div>
 
