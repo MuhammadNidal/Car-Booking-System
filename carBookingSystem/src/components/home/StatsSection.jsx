@@ -59,7 +59,7 @@ const StatsSection = () => {
 
                     <div>
                         <h2 className="text-6xl font-extrabold text-gray-900 tracking-tight">
-                        {inView ? (
+               d          {inView ? (
                             <CountUp start={0} end={3} duration={3} separator="," />
                         ) : (
                             "0"
