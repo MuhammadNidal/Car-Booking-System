@@ -14,6 +14,7 @@ const IssuesSections = () => (
           <h3 className="font-semibold text-lg mb-2">{it.title}</h3>
           <p className="text-sm text-gray-600">{it.desc}</p>
         </div>
+        
       ))}
     </div>
   </section>

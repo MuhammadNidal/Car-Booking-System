@@ -7,9 +7,7 @@ import StatsSection from "../components/home/StatsSection";
 import TestimonialSection from "../components/home/TestimonialSection";
 import ConsultationSection from "../components/home/ConsultationSection";
 import CallToActionSection from "../components/home/CallToActionSection";
-import Slider from "../components/home/Slider";
 import SliderComponent from "../components/home/Slider";
-import "/src/components/home/Slider.css";
 
 const Home = () => {
   return (

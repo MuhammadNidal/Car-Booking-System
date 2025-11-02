@@ -8,12 +8,12 @@ const StatsSection = () => {
     return (
         <section className="py-16 bg-white">
             <div className="max-w-6xl mx-auto px-4">
-                {/* Grid container */}
+              
                 <div
                     ref={ref}
                     className="grid grid-cols-1 gap-8 text-center sm:grid-cols-2 lg:grid-cols-4"
                 >
-                    {/* === Animated Stat === */}
+                 
                     <div>
                         <h2 className="text-6xl font-extrabold text-gray-900 tracking-tight">
                             {inView ? (
@@ -28,7 +28,7 @@ const StatsSection = () => {
                         </p>
                     </div>
 
-                    {/* === Static Stats === */}
+                 
                     <div>
                         <h2 className="text-6xl font-extrabold text-gray-900 tracking-tight">
                         {inView ? (
@@ -59,7 +59,7 @@ const StatsSection = () => {
 
                     <div>
                         <h2 className="text-6xl font-extrabold text-gray-900 tracking-tight">
-               d          {inView ? (
+                        {inView ? (
                             <CountUp start={0} end={3} duration={3} separator="," />
                         ) : (
                             "0"

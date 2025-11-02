@@ -3,9 +3,9 @@ import clsx from 'clsx'
 
 const Button = ({ variant = 'primary', size = 'md', children, className = '', ...props }) => {
   const variants = {
-    primary: 'btn btn-primary',
-    outline: 'btn btn-outline',
-    ghost: 'btn btn-ghost'
+    primary: 'btn-primary text-white',
+    outline: 'btn-outline',
+    ghost: 'btn-ghost'
   }
 
   const sizes = {
@@ -14,9 +14,11 @@ const Button = ({ variant = 'primary', size = 'md', children, className = '', ..
     lg: 'btn-lg'
   }
 
+  const base = 'btn rounded-full'
+
   return (
     <button
-      className={clsx(variants[variant], sizes[size], className)}
+      className={clsx(base, variants[variant], sizes[size], className)}
       {...props}
     >
       {children}
