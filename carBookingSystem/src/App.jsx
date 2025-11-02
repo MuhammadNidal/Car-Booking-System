@@ -7,7 +7,7 @@ import NotFound from './pages/NotFound'
 function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <Suspense fallback={<div className="min-h-screen  flex items-center justify-center ">Loading...</div>}>
         <Routes>
           <Route path="/" element={<Layout><Home /></Layout>} />
           <Route path="*" element={<Layout><NotFound /></Layout>} />

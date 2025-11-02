@@ -1,63 +1,50 @@
-import React, { useState } from "react";
-import background from "/src/assets/slider51.png.webp";
+  import React, { useState } from "react";
 
-// Imports from Headless UI
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-// Import the icon from the standard v2.0 heroicons library
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+  import { motion } from "framer-motion";
 
-const HeroSection = () => {
-  // --- Data Arrays (These are necessary for MenuItems to map over) ---
-  const carMakes = [
-    {
-      id: 1,
-      name: "Tesla",
-      models: ["Model S", "Model 3", "Model X", "Model Y"],
+
+  const background = "https://spn-sta.spinny.com/blog/20220228142243/ezgif.com-gif-maker-98-5.jpg?compress=true&quality=80&w=1200&dpr=1";
+
+
+
+  import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+
+  import { ChevronDownIcon } from "@heroicons/react/20/solid";
+
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
     },
-    { id: 2, name: "BMW", models: ["X5", "3 Series", "5 Series", "X3"] },
-    {
-      id: 3,
-      name: "Toyota",
-      models: ["Camry", "Corolla", "RAV4", "Highlander"],
-    },
-    { id: 4, name: "Mercedes", models: ["C-Class", "E-Class", "GLE", "GLA"] },
-    { id: 5, name: "Audi", models: ["A4", "Q5", "A6", "Q7"] },
-  ];
-
-  const priceRanges = [
-    { id: 1, label: "All Prices", value: "all" },
-    { id: 2, label: "$0 - $10K", value: "0-10000" },
-    { id: 3, label: "$10K - $30K", value: "10000-30000" },
-    { id: 4, label: "$30K - $50K", value: "30000-50000" },
-    { id: 5, label: "$50K+", value: "50000+" },
-  ];
-
-  const conditionOptions = [
-    { id: 1, label: "Used Cars", value: "used" },
-    { id: 2, label: "New Cars", value: "new" },
-    { id: 3, label: "Certified Pre-Owned", value: "certified" },
-  ];
-
-  // --- State ---
-  const [selectedMake, setSelectedMake] = useState("");
-  const [availableModels, setAvailableModels] = useState([]);
-  const [searchData, setSearchData] = useState({
-    condition: "used",
-    make: "",
-    model: "",
-    price: "all",
-  });
-
-  // --- Event Handlers ---
-  const handleMakeChange = (makeValue) => {
-    setSelectedMake(makeValue);
-    setSearchData({ ...searchData, make: makeValue, model: "" });
-    const selectedCar = carMakes.find((car) => car.name === makeValue);
-    setAvailableModels(selectedCar ? selectedCar.models : []);
   };
 
-  const handleSearch = () => {
-    console.log("Search initiated with:", searchData);
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 120,
+        damping: 14,
+      },
+    },
+  };
+
+  const imageFadeIn = {
+    hidden: { opacity: 0, x: 100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
   };
 
   // Helper to get the display label from the selected value
@@ -221,18 +208,27 @@ const HeroSection = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </button>
-        </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            
+              <span className="sm:hidden font-medium">Search</span>
+            </motion.button>
+          </motion.div>
+        </motion.div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
-export default HeroSection;
+  export default HeroSection;

@@ -5,24 +5,23 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { Bars3Icon, XMarkIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import logo from "/src/assets/logo.png"
 
-// Navigation links configuration
+
 const navigation = [
-  { name: 'Sell', href: '/sell' },
-  { name: 'Compare', href: '/compare' },
-  { name: 'Price Estimator', href: '/estimator' },
-  { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
+    { name: 'Sell', href: '/sell' },
+    { name: 'Compare', href: '/compare' },
+    { name: 'Price Estimator', href: '/estimator' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
 ];
 
 const buyCarLinks = [
-  { name: 'Used Cars', href: '/cars/used' },
-  { name: 'New Cars', href: '/cars/new' },
-  { name: 'Certified Cars', href: '/cars/certified' },
+    { name: 'Used Cars', href: '/cars/used' },
+    { name: 'New Cars', href: '/cars/new' },
+    { name: 'Certified Cars', href: '/cars/certified' },
 ];
 
-// Helper function to combine class names
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+    return classes.filter(Boolean).join(' ');
 }
 
 export default function Navbar() {
@@ -149,43 +148,9 @@ export default function Navbar() {
                         </DisclosureButton>
                       ))}
                     </DisclosurePanel>
-                  </>
-                )}
-              </Disclosure>
-
-              {/* Other Mobile Links */}
-              {navigation.map((item) => (
-                <DisclosureButton
-                  key={item.name}
-                  as={NavLink}
-                  to={item.href}
-                  className={({ isActive }) => classNames(
-                    isActive 
-                      ? 'bg-blue-600 text-white' 
-                      : 'text-gray-900 hover:bg-gray-100',
-                    'block rounded-lg px-3 py-2.5 text-base font-medium transition-colors duration-200'
-                  )}
-                >
-                  {item.name}
-                </DisclosureButton>
-              ))}
-              
-              <div className="pt-3 mt-3 border-t border-gray-200">
-                {/* Mobile Login/Signup Button */}
-                <DisclosureButton
-                  as={Link}
-                  to="/login"
-                  className="flex w-full items-center justify-center gap-2 rounded-full bg-blue-600 px-3 py-2.5 text-base font-medium text-white shadow-sm hover:bg-blue-700 transition-colors duration-200"
-                >
-                  <UserCircleIcon className="h-5 w-5" />
-                  <span>Login / Signup</span>
-                </DisclosureButton>
-              </div>
-            </div>
-          </DisclosurePanel>
-        </>
-      )}
-    </Disclosure>
-  );
+                </>
+            )}
+        </Disclosure>
+    );
 }
 
