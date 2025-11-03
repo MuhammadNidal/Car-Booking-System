@@ -47,125 +47,159 @@
     },
   };
 
-  const HeroSection = () => {
-    // --- Data Arrays ---
-    const carMakes = [
-      {
-        id: 1,
-        name: "Tesla",
-        models: ["Model S", "Model 3", "Model X", "Model Y"],
-      },
-      { id: 2, name: "BMW", models: ["X5", "3 Series", "5 Series", "X3"] },
-      {
-        id: 3,
-        name: "Toyota",
-        models: ["Camry", "Corolla", "RAV4", "Highlander"],
-      },
-      { id: 4, name: "Mercedes", models: ["C-Class", "E-Class", "GLE", "GLA"] },
-      { id: 5, name: "Audi", models: ["A4", "Q5", "A6", "Q7"] },
-    ];
+  // Helper to get the display label from the selected value
+  const getConditionLabel = () =>
+    conditionOptions.find((o) => o.value === searchData.condition)?.label;
+  const getPriceLabel = () =>
+    priceRanges.find((o) => o.value === searchData.price)?.label;
 
-    const priceRanges = [
-      { id: 1, label: "All Prices", value: "all" },
-      { id: 2, label: "$0 - $10K", value: "0-10000" },
-      { id: 3, label: "$10K - $30K", value: "10000-30000" },
-      { id: 4, label: "$30K - $50K", "value": "30000-50000" },
-      { id: 5, label: "$50K+", value: "50000+" },
-    ];
+  return (
+    <div className="h-[90vh] w-full relative overflow-hidden bg-surface">
+      <div className="absolute inset-0 z-0 flex items-end justify-center pb-4 sm:pb-0">
+        <img
+          src={background}
+          alt="Hero Image"
+          className="w-full sm:w-[70%] h-auto object-contain max-h-[40vh] sm:max-h-[50vh]"
+        />
+      </div>
 
-    const conditionOptions = [
-      { id: 1, label: "Used Cars", value: "used" },
-      { id: 2, label: "New Cars", value: "new" },
-      { id: 3, label: "Certified Pre-Owned", value: "certified" },
-    ];
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center justify-start h-full px-2 sm:px-4 pt-8 sm:pt-16 md:pt-20 lg:pt-32 text-center">
+        <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-2 sm:mb-4 px-2">
+          Find cars for sale and for rent near you
+        </p>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 mb-4 sm:mb-6 md:mb-8 px-2">
+          Find Your Dream Car
+        </h1>
 
-    // --- State ---
-    const [selectedMake, setSelectedMake] = useState("");
-    const [availableModels, setAvailableModels] = useState([]);
-    const [searchData, setSearchData] = useState({
-      condition: "used",
-      make: "",
-      model: "",
-      price: "all",
-    });
-
-    // --- Event Handlers ---
-    const handleMakeChange = (makeValue) => {
-      setSelectedMake(makeValue);
-      setSearchData({ ...searchData, make: makeValue, model: "" });
-      const selectedCar = carMakes.find((car) => car.name === makeValue);
-      setAvailableModels(selectedCar ? selectedCar.models : []);
-    };
-
-    const handleSearch = () => {
-      console.log("Search initiated with:", searchData);
-    };
-
- 
-    const getConditionLabel = () =>
-      conditionOptions.find((o) => o.value === searchData.condition)?.label;
-    const getPriceLabel = () =>
-      priceRanges.find((o) => o.value === searchData.price)?.label;
-
-    return (
-    
-      <div className="h-[90vh] w-full relative overflow-hidden bg-gray-900">
-        
-        
-        <motion.div
-          className="absolute inset-0 z-0" 
-          variants={imageFadeIn}
-          initial="hidden"
-          animate="visible"
-        >
-          <img
-            src={background}
-            alt="Hero"
-            
-            className="w-full h-full object-cover" 
-            onError={(e) => { e.currentTarget.src = 'https://placehold.co/1920x1080/e0e7ff/3730a3?text=Image+Error'; }}
-          />
+        {/* Enhanced Search Bar with Headless UI */}
+        <div className="w-full max-w-md sm:max-w-2xl md:max-w-4xl lg:max-w-5xl bg-white/20 rounded-lg sm:rounded-full shadow-xl flex flex-col sm:flex-row items-stretch gap-1 sm:gap-2 p-1 sm:p-2">
           
-          <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/50 to-black/0" />
-        </motion.div>
+          {/* Condition Dropdown */}
+          <Menu as="div" className="flex-1 relative">
+            <MenuButton className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-md sm:rounded-full bg-transparent p-2 sm:p-3 text-xs sm:text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">
+              {getConditionLabel()}
+              <ChevronDownIcon
+                className="-mr-1 h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
+                aria-hidden="true"
+              />
+            </MenuButton>
+            <MenuItems
+              transition
+              className="absolute left-0 z-10 mt-1 sm:mt-2 w-full sm:w-48 md:w-56 origin-top-right rounded-xl bg-white/60 backdrop-blur-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+            >
+              <div className="py-1">
+                {conditionOptions.map((option) => (
+                  <MenuItem key={option.id}>
+                    <button
+                      onClick={() =>
+                        setSearchData({ ...searchData, condition: option.value })
+                      }
+                      className="text-gray-900 group flex w-full items-center rounded-md px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm data-focus:bg-primary data-focus:text-white"
+                    >
+                      {option.label}
+                    </button>
+                  </MenuItem>
+                ))}
+              </div>
+            </MenuItems>
+          </Menu>
 
-  
-        <motion.div
-        
-          className="relative z-20 flex flex-col items-center justify-start h-full pt-16 sm:pt-20 md:pt-24 lg:pt-32 text-center"
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.p
-         
-            className="text-base sm:text-lg md:text-xl text-white mb-2 sm:mb-4 px-2 drop-shadow-lx"
-            variants={fadeInUp}
-          >
-            Find cars for sale and for rent near you
-          </motion.p>
-          
-          <motion.h1
-            
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 px-2 drop-shadow-lg"
-            variants={fadeInUp}
-          >
-            Find Your Dream Car
-          </motion.h1>
+          {/* Make Dropdown */}
+          <Menu as="div" className="flex-1 relative">
+            <MenuButton className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-md sm:rounded-full bg-transparent p-2 sm:p-3 text-xs sm:text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">
+              {searchData.make || "Any Makes"}
+              <ChevronDownIcon
+                className="-mr-1 h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
+                aria-hidden="true"
+              />
+            </MenuButton>
+            <MenuItems
+              transition
+              className="absolute left-0 z-10 mt-1 sm:mt-2 w-full sm:w-48 md:w-56 origin-top-right rounded-xl bg-white/60 backdrop-blur-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+            >
+              <div className="py-1">
+                {carMakes.map((car) => (
+                  <MenuItem key={car.id}>
+                    <button
+                      onClick={() => handleMakeChange(car.name)}
+                      className="text-gray-900 group flex w-full items-center rounded-md px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm data-focus:bg-primary data-focus:text-white"
+                    >
+                      {car.name}
+                    </button>
+                  </MenuItem>
+                ))}
+              </div>
+            </MenuItems>
+          </Menu>
 
-          <motion.p
-            
-            className="text-lg sm:text-xl text-white max-w-lg md:max-w-2xl mx-auto mb-8 sm:mb-10 md:mb-12 px-2 drop-shadow-md"
-            variants={fadeInUp}
-          >
-            We make finding your perfect vehicle simple and fast. Browse our extensive inventory today.
-          </motion.p>
+          {/* Model Dropdown */}
+          <Menu as="div" className="flex-1 relative">
+            <MenuButton
+              disabled={!selectedMake}
+              className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-md sm:rounded-full bg-transparent p-2 sm:p-3 text-xs sm:text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 disabled:bg-gray-50/50 disabled:cursor-not-allowed disabled:text-gray-400"
+            >
+              {searchData.model || "Any Models"}
+              <ChevronDownIcon
+                className="-mr-1 h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
+                aria-hidden="true"
+              />
+            </MenuButton>
+            <MenuItems
+              transition
+              className="absolute left-0 z-10 mt-1 sm:mt-2 w-full sm:w-48 md:w-56 origin-top-right rounded-xl bg-white/60 backdrop-blur-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+            >
+              <div className="py-1">
+                {availableModels.map((model, index) => (
+                  <MenuItem key={index}>
+                    <button
+                      onClick={() =>
+                        setSearchData({ ...searchData, model: model })
+                      }
+                      className="text-gray-900 group flex w-full items-center rounded-md px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm data-focus:bg-primary data-focus:text-white"
+                    >
+                      {model}
+                    </button>
+                  </MenuItem>
+                ))}
+              </div>
+            </MenuItems>
+          </Menu>
 
-         
-          <motion.div
-            
-            className="w-full max-w-md sm:max-w-2xl md:max-w-4xl lg:max-w-5xl bg-white/70 backdrop-blur-md rounded-lg sm:rounded-full shadow-xl flex flex-col sm:flex-row items-stretch gap-3 sm:gap-2 p-1 sm:p-2"
-            variants={fadeInUp}
+          {/* Price Dropdown */}
+          <Menu as="div" className="flex-1 relative">
+            <MenuButton className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-md sm:rounded-full bg-transparent p-2 sm:p-3 text-xs sm:text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150">
+              {getPriceLabel()}
+              <ChevronDownIcon
+                className="-mr-1 h-4 w-4 sm:h-5 sm:w-5 text-gray-400"
+                aria-hidden="true"
+              />
+            </MenuButton>
+            <MenuItems
+              transition
+              className="absolute left-0 z-10 mt-1 sm:mt-2 w-full sm:w-48 md:w-56 origin-top-right rounded-xl bg-white/60 backdrop-blur-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+            >
+              <div className="py-1">
+                {priceRanges.map((range) => (
+                  <MenuItem key={range.id}>
+                    <button
+                      onClick={() =>
+                        setSearchData({ ...searchData, price: range.value })
+                      }
+                      className="text-gray-900 group flex w-full items-center rounded-md px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm data-focus:bg-primary data-focus:text-white"
+                    >
+                      {range.label}
+                    </button>
+                  </MenuItem>
+                ))}
+              </div>
+            </MenuItems>
+          </Menu>
+
+          {/* Search Button */}
+          <button
+            onClick={handleSearch}
+            className="btn btn-sm sm:btn-md btn-primary rounded-full sm:rounded-full transition-all duration-300 shadow-lg flex items-center justify-center p-2 sm:p-3 min-w-[44px] sm:min-w-0"
           >
             
            
@@ -318,6 +352,12 @@
               whileHover={{ scale: 1.01, }}
               whileTap={{ scale: 0.9, }}
               transition={{ type: "spring", stiffness: 300 }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4 sm:h-5 sm:w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

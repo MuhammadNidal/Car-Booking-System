@@ -15,7 +15,7 @@ const Home = () => {
       <CallToActionSection />
       <BrowseCategory />
       <SliderComponent />
-      <IssuesSections />
+      {/* <IssuesSections /> */}
       <OurServices />
       <StatsSection />
       <TestimonialSection />
