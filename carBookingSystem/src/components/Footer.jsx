@@ -1,96 +1,123 @@
-import React from "react";
-import Button from "./ui/Button";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-const Footer = () => (
-  <footer className="bg-surface border-t border-gray-200 mt-12">
-    <div className="container mx-auto px-4 md:px-8 lg:px-20 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-      {/* Brand Section */}
-      <div className="text-center sm:text-left">
-        <div className="text-2xl font-bold text-primary">CarShowroom</div>
-        <p className="text-sm text-muted mt-2 max-w-xs mx-auto sm:mx-0">
-          Trusted car marketplace — buy, sell and service with confidence.
-        </p>
-      </div>
+const footerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    }
+  }
+};
 
-      {/* Links Section */}
-      <div className="flex flex-wrap justify-center sm:justify-between gap-10">
-        <div>
-          <h4 className="font-semibold mb-3 text-primary">Company</h4>
-          <ul className="text-sm text-muted space-y-2">
-            <li>
-              <a href="#" className="hover:text-primary transition-colors">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-primary transition-colors">
-                Careers
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-primary transition-colors">
-                Press
-              </a>
-            </li>
-          </ul>
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5
+    }
+  }
+};
+
+const Footer = () => {
+  return (
+    <motion.footer 
+      className="bg-gray-100 border-t border-gray-200"
+      variants={footerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          
+          {/* Brand Section */}
+          <motion.div variants={itemVariants}>
+            <Link to="/" className="flex items-center gap-1 group">
+              <span className="font-bold text-2xl text-[#193CB8]">
+                AutoChoice
+              </span>
+            </Link>
+            <p className="text-gray-600 mt-4 text-sm leading-relaxed">
+              Your trusted partner in finding the perfect car. Quality, transparency, and service you can count on.
+            </p>
+          </motion.div>
+
+          {/* Quick Links */}
+          <motion.div variants={itemVariants}>
+            <h4 className="font-semibold text-gray-900 mb-4">Quick Links</h4>
+            <ul className="space-y-3">
+              <li><Link to="/cars/used" className="text-sm text-gray-600 hover:text-[#193CB8] transition-colors">Used Cars</Link></li>
+              <li><Link to="/cars/new" className="text-sm text-gray-600 hover:text-[#193CB8] transition-colors">New Cars</Link></li>
+              <li><Link to="/sell" className="text-sm text-gray-600 hover:text-[#193CB8] transition-colors">Sell Your Car</Link></li>
+              <li><Link to="/compare" className="text-sm text-gray-600 hover:text-[#193CB8] transition-colors">Compare</Link></li>
+            </ul>
+          </motion.div>
+
+          {/* Company */}
+          <motion.div variants={itemVariants}>
+            <h4 className="font-semibold text-gray-900 mb-4">Company</h4>
+            <ul className="space-y-3">
+              <li><Link to="/about" className="text-sm text-gray-600 hover:text-[#193CB8] transition-colors">About Us</Link></li>
+              <li><Link to="/contact" className="text-sm text-gray-600 hover:text-[#193CB8] transition-colors">Contact</Link></li>
+              <li><Link to="/careers" className="text-sm text-gray-600 hover:text-[#193CB8] transition-colors">Careers</Link></li>
+              <li><Link to="/privacy" className="text-sm text-gray-600 hover:text-[#193CB8] transition-colors">Privacy Policy</Link></li>
+            </ul>
+          </motion.div>
+
+          {/* Newsletter Section – Fixed responsiveness */}
+          <motion.div variants={itemVariants}>
+            <h4 className="font-semibold text-gray-900 mb-4">Stay in the Loop</h4>
+            <p className="text-gray-600 text-sm mb-4">
+              Get the latest deals and offers straight to your inbox.
+            </p>
+            <form className="flex flex-col sm:flex-row gap-2 w-full">
+              <input
+                type="email"
+                aria-label="Email Address"
+                placeholder="Enter your email"
+                className="flex-1 min-w-0 px-4 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#193CB8]"
+              />
+              <button
+                type="submit"
+                className="inline-flex items-center justify-center rounded-lg bg-blue-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-[#193CB8] focus:ring-offset-2 transition-colors whitespace-nowrap"
+              >
+                Subscribe
+              </button>
+            </form>
+          </motion.div>
         </div>
+      </div>
 
-        <div>
-          <h4 className="font-semibold mb-3 text-primary">Support</h4>
-          <ul className="text-sm text-muted space-y-2">
-            <li>
-              <a href="#" className="hover:text-primary transition-colors">
-                Help Center
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-primary transition-colors">
-                Contact Us
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-primary transition-colors">
-                Privacy
-              </a>
-            </li>
-          </ul>
+      {/* Bottom Bar */}
+      <motion.div className="border-t border-gray-200" variants={itemVariants}>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-gray-500 text-center sm:text-left">
+            © {new Date().getFullYear()} AutoChoice. All rights reserved.
+          </p>
+          <div className="flex items-center gap-5">
+            <Link to="#" aria-label="Facebook" className="text-gray-500 hover:text-[#193CB8] transition-colors">
+              <Facebook className="w-5 h-5" />
+            </Link>
+            <Link to="#" aria-label="Twitter" className="text-gray-500 hover:text-[#193CB8] transition-colors">
+              <Twitter className="w-5 h-5" />
+            </Link>
+            <Link to="#" aria-label="Instagram" className="text-gray-500 hover:text-[#193CB8] transition-colors">
+              <Instagram className="w-5 h-5" />
+            </Link>
+            <Link to="#" aria-label="LinkedIn" className="text-gray-500 hover:text-[#193CB8] transition-colors">
+              <Linkedin className="w-5 h-5" />
+            </Link>
+          </div>
         </div>
-      </div>
-
-      {/* Newsletter Section */}
-      <div className="text-center sm:text-left">
-        <h4 className="font-semibold mb-2 text-primary">Stay in the loop</h4>
-        <p className="text-sm text-muted mb-3">
-          Subscribe for updates and offers.
-        </p>
-        <form className="flex flex-col sm:flex-row w-full max-w-xs mx-auto sm:mx-0 gap-2">
-          <input
-            aria-label="Email"
-            placeholder="you@company.com"
-            className="flex-1 px-3 py-2 rounded border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-          />
-          <Button className="whitespace-nowrap btn-md w-full sm:w-auto">
-            Subscribe
-          </Button>
-        </form>
-      </div>
-    </div>
-
-    {/* Bottom Bar */}
-    <div className="border-t border-gray-100">
-      <div className="container mx-auto px-4 md:px-8 lg:px-20 py-4 text-sm text-muted flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-        <div>© {new Date().getFullYear()} CarShowroom. All rights reserved.</div>
-        <div className="flex items-center gap-4">
-          <a href="#" className="text-muted hover:text-primary transition-colors">
-            Terms
-          </a>
-          <a href="#" className="text-muted hover:text-primary transition-colors">
-            Privacy
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
-);
+      </motion.div>
+    </motion.footer>
+  );
+};
 
 export default Footer;

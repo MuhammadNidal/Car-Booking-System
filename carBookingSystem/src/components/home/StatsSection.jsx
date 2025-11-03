@@ -21,7 +21,7 @@ const StatsSection = () => {
                             ) : (
                                 "0"
                             )}
-                            <span className="text-blue-500 ml-1">+</span>
+                            <span className="text-blue-900 ml-1">+</span>
                         </h2>
                         <p className="mt-1 text-sm font-semibold text-gray-500 tracking-wide uppercase">
                             Total Cars
@@ -36,7 +36,7 @@ const StatsSection = () => {
                         ) : (
                             "0"
                         )}
-                        <span className="text-blue-500 ml-1">k+</span>
+                        <span className="text-blue-900 ml-1">k+</span>
                         </h2>
                         <p className="mt-1 text-sm font-semibold text-gray-500 tracking-wide uppercase">
                             Happy Customers
@@ -50,7 +50,7 @@ const StatsSection = () => {
                         ) : (
                             "0"
                         )}
-                        <span className="text-blue-500 ml-1">+</span>
+                        <span className="text-blue-900 ml-1">+</span>
                         </h2>
                         <p className="mt-1 text-sm font-semibold text-gray-500 tracking-wide uppercase">
                             Dealer's
@@ -64,7 +64,7 @@ const StatsSection = () => {
                         ) : (
                             "0"
                         )}
-                        <span className="text-blue-500 ml-1">+</span>
+                        <span className="text-blue-900 ml-1">+</span>
                         </h2>
                         <p className="mt-1 text-sm font-semibold text-gray-500 tracking-wide uppercase">
                             Years

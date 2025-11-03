@@ -201,6 +201,157 @@
             onClick={handleSearch}
             className="btn btn-sm sm:btn-md btn-primary rounded-full sm:rounded-full transition-all duration-300 shadow-lg flex items-center justify-center p-2 sm:p-3 min-w-[44px] sm:min-w-0"
           >
+            
+           
+            <Menu as="div" className="flex-1 relative">
+              <MenuButton 
+               
+                className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-md sm:rounded-full bg-white p-3 text-sm sm:text-base text-gray-700 hover:bg-gray-100 transition-colors duration-150 shadow-sm"
+              >
+                {getConditionLabel()}
+                <ChevronDownIcon
+                  className="-mr-1 h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+              </MenuButton>
+              <MenuItems
+                transition
+             
+                className="absolute left-0 z-10 mt-1 sm:mt-2 w-full sm:w-48 md:w-56 origin-top-right rounded-xl bg-white/80 backdrop-blur-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+              >
+                <div className="py-1">
+                  {conditionOptions.map((option) => (
+                    <MenuItem key={option.id}>
+                      <motion.button
+                        onClick={() =>
+                          setSearchData({ ...searchData, condition: option.value })
+                        }
+                      
+                        className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm sm:text-base data-focus:bg-blue-900 data-focus:text-white"
+                        whileHover={{ x: 5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        {option.label}
+                      </motion.button>
+                    </MenuItem>
+                  ))}
+                </div>
+              </MenuItems>
+            </Menu>
+
+            <Menu as="div" className="flex-1 relative">
+              <MenuButton 
+              
+                className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-md sm:rounded-full bg-white p-3 text-sm sm:text-base text-gray-700 hover:bg-gray-100 transition-colors duration-150 shadow-sm"
+              >
+                {searchData.make || "Any Makes"}
+                <ChevronDownIcon
+                  className="-mr-1 h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+              </MenuButton>
+              <MenuItems
+                transition
+                className="absolute left-0 z-10 mt-1 sm:mt-2 w-full sm:w-48 md:w-56 origin-top-right rounded-xl bg-white/80 backdrop-blur-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+              >
+                <div className="py-1">
+                  {carMakes.map((car) => (
+                    <MenuItem key={car.id}>
+                      <motion.button
+                        onClick={() => handleMakeChange(car.name)}
+                       
+                        className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm sm:text-base data-focus:bg-blue-900 data-focus:text-white"
+                        whileHover={{ x: 5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        {car.name}
+                      </motion.button>
+                    </MenuItem>
+                  ))}
+                </div>
+              </MenuItems>
+            </Menu>
+
+         
+            <Menu as="div" className="flex-1 relative">
+              <MenuButton
+                disabled={!selectedMake}
+            
+                className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-md sm:rounded-full bg-white p-3 text-sm sm:text-base text-gray-700 hover:bg-gray-100 transition-colors duration-150 disabled:bg-gray-50/50 disabled:cursor-not-allowed disabled:text-gray-400 shadow-sm"
+              >
+                {searchData.model || "Any Models"}
+                <ChevronDownIcon
+                  className="-mr-1 h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+              </MenuButton>
+              <MenuItems
+                transition
+                className="absolute left-0 z-10 mt-1 sm:mt-2 w-full sm:w-48 md:w-56 origin-top-right rounded-xl bg-white/80 backdrop-blur-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+              >
+                <div className="py-1">
+                  {availableModels.map((model, index) => (
+                    <MenuItem key={index}>
+                      <motion.button
+                        onClick={() =>
+                          setSearchData({ ...searchData, model: model })
+                        }
+                      
+                        className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm sm:text-base data-focus:bg-blue-900 data-focus:text-white"
+                        whileHover={{ x: 5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        {model}
+                      </motion.button>
+                    </MenuItem>
+                  ))}
+                </div>
+              </MenuItems>
+            </Menu>
+
+        
+            <Menu as="div" className="flex-1 relative">
+              <MenuButton 
+           
+                className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-md sm:rounded-full bg-white p-3 text-sm sm:text-base text-gray-700 hover:bg-gray-100 transition-colors duration-150 shadow-sm"
+              >
+                {getPriceLabel()}
+                <ChevronDownIcon
+                  className="-mr-1 h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+              </MenuButton>
+              <MenuItems
+                transition
+                className="absolute left-0 z-10 mt-1 sm:mt-2 w-full sm:w-48 md:w-56 origin-top-right rounded-xl bg-white/80 backdrop-blur-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 data-closed:scale-95 data-closed:opacity-0 p-1"
+              >
+                <div className="py-1">
+                  {priceRanges.map((range) => (
+                    <MenuItem key={range.id}>
+                      <motion.button
+                        onClick={() =>
+                          setSearchData({ ...searchData, price: range.value })
+                        }
+                     
+                        className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm sm:text-base data-focus:bg-blue-900 data-focus:text-white"
+                        whileHover={{ x: 5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        {range.label}
+                      </motion.button>
+                    </MenuItem>
+                  ))}
+                </div>
+              </MenuItems>
+            </Menu>
+
+          
+            <motion.button
+              onClick={handleSearch}
+              className="w-full sm:w-auto rounded-full sm:rounded-full bg-blue-900 text-white hover:bg-blue-700 transition-all duration-300 shadow-lg flex items-center justify-center gap-2 p-3"
+              whileHover={{ scale: 1.01, }}
+              whileTap={{ scale: 0.9, }}
+              transition={{ type: "spring", stiffness: 300 }}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4 sm:h-5 sm:w-5"

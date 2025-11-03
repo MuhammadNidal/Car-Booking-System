@@ -204,7 +204,7 @@ const SliderComponent = () => {
     };
 
     return (
-        <section className="py-12 bg-white relative">
+        <section className="py-12 bg-white relative px-10">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
                 <Slider {...settings} key={slidesToShow}>
                     {carDetails.map((car, index) => (
