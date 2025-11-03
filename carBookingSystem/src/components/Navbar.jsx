@@ -33,11 +33,11 @@ export default function Navbar() {
                         <div className="flex h-16 items-center justify-between">
 
                             {/* Logo */}
-                            <div className="flex items-center">
-                                <Link to="/" className="flex flex-shrink-0 items-center gap-2 group transition-opacity duration-300 hover:opacity-80">
+                            <div className="flex items-center ">
+                                <Link to="/" className="flex flex-shrink-0 items-center gap-1 group transition-opacity duration-300 hover:opacity-80">
                                     <img src={logo} alt="" width={"50"} />
-                                    <span className="font-bold text-xl bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent whitespace-nowrap">
-                    CarDealer
+                    <span className="font-bold text-xl bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent whitespace-nowrap ">
+                    <p className='text-blue-900'>AutoChoice</p>
                   </span>
                                 </Link>
                             </div>
@@ -51,7 +51,7 @@ export default function Navbar() {
                                         Buy
                                         <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                                        
-                                        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-[calc(100%-2rem)] scale-x-0 bg-blue-600 transition-transform duration-300 group-hover:scale-x-100"></span>
+                                        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-[calc(100%-2rem)] scale-x-0 bg-blue-900 transition-transform duration-300 group-hover:scale-x-100"></span>
                                     </MenuButton>
 
                                     <MenuItems
@@ -63,7 +63,7 @@ export default function Navbar() {
                                                 <MenuItem key={item.name}>
                                                     <Link
                                                         to={item.href}
-                                                        className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-blue-600 data-focus:text-white transition-colors duration-150"
+                                                        className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm data-focus:bg-blue-900 data-focus:text-white transition-colors duration-150"
                                                     >
                                                         {item.name}
                                                     </Link>
@@ -80,14 +80,14 @@ export default function Navbar() {
                                         to={item.href}
                                         className={({ isActive }) => classNames(
                                             isActive
-                                                ? 'bg-blue-600 text-white'
+                                                ? 'bg-blue-900 text-white'
                                                 : 'text-gray-700 hover:bg-gray-100',
                                             'group relative rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-200'
                                         )}
                                     >
                                         {item.name}
                                         {/* Hover underline animation */}
-                                        <span className=" absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-[calc(100%-2rem)] scale-x-0 bg-blue-600 transition-transform duration-300 group-hover:scale-x-100"></span>
+                                        <span className=" absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-[calc(100%-2rem)] scale-x-0 bg-blue-900 transition-transform duration-300 group-hover:scale-x-100"></span>
                                     </NavLink>
                                 ))}
                             </div>
@@ -97,7 +97,7 @@ export default function Navbar() {
                                 {/* Login/Signup Button - Desktop */}
                                 <Link
                                     to="/login"
-                                    className="hidden lg:inline-flex items-center justify-center gap-1.5 rounded-full bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200"
+                                    className="hidden lg:inline-flex items-center justify-center gap-1.5 rounded-full bg-blue-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200"
                                 >
                                     <UserCircleIcon className="h-5 w-5" />
                                     Login / Signup
@@ -160,7 +160,7 @@ export default function Navbar() {
                                     to={item.href}
                                     className={({ isActive }) => classNames(
                                         isActive
-                                            ? 'bg-blue-600 text-white'
+                                            ? 'bg-blue-900 text-white'
                                             : 'text-gray-900 hover:bg-gray-100',
                                         'block rounded-lg px-3 py-2.5 text-base font-medium transition-colors duration-200'
                                     )}
@@ -174,7 +174,7 @@ export default function Navbar() {
                                 <DisclosureButton
                                     as={Link}
                                     to="/login"
-                                    className="flex w-full items-center justify-center gap-2 rounded-full bg-blue-600 px-3 py-2.5 text-base font-medium text-white shadow-sm hover:bg-blue-700 transition-colors duration-200"
+                                    className="flex w-full items-center justify-center gap-2 rounded-full bg-blue-900 px-3 py-2.5 text-base font-medium text-white shadow-sm hover:bg-blue-700 transition-colors duration-200"
                                 >
                                     <UserCircleIcon className="h-5 w-5" />
                                     <span>Login / Signup</span>

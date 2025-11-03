@@ -193,7 +193,7 @@
                           setSearchData({ ...searchData, condition: option.value })
                         }
                       
-                        className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm sm:text-base data-focus:bg-blue-600 data-focus:text-white"
+                        className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm sm:text-base data-focus:bg-blue-900 data-focus:text-white"
                         whileHover={{ x: 5 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
@@ -226,7 +226,7 @@
                       <motion.button
                         onClick={() => handleMakeChange(car.name)}
                        
-                        className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm sm:text-base data-focus:bg-blue-600 data-focus:text-white"
+                        className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm sm:text-base data-focus:bg-blue-900 data-focus:text-white"
                         whileHover={{ x: 5 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
@@ -263,7 +263,7 @@
                           setSearchData({ ...searchData, model: model })
                         }
                       
-                        className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm sm:text-base data-focus:bg-blue-600 data-focus:text-white"
+                        className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm sm:text-base data-focus:bg-blue-900 data-focus:text-white"
                         whileHover={{ x: 5 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
@@ -299,7 +299,7 @@
                           setSearchData({ ...searchData, price: range.value })
                         }
                      
-                        className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm sm:text-base data-focus:bg-blue-600 data-focus:text-white"
+                        className="text-gray-900 group flex w-full items-center rounded-md px-3 py-2 text-sm sm:text-base data-focus:bg-blue-900 data-focus:text-white"
                         whileHover={{ x: 5 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
@@ -314,7 +314,7 @@
           
             <motion.button
               onClick={handleSearch}
-              className="w-full sm:w-auto rounded-full sm:rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 shadow-lg flex items-center justify-center gap-2 p-3"
+              className="w-full sm:w-auto rounded-full sm:rounded-full bg-blue-900 text-white hover:bg-blue-700 transition-all duration-300 shadow-lg flex items-center justify-center gap-2 p-3"
               whileHover={{ scale: 1.01, }}
               whileTap={{ scale: 0.9, }}
               transition={{ type: "spring", stiffness: 300 }}
