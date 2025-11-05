@@ -76,7 +76,7 @@ const CarCard = ({
             {formattedPrice}
           </span>
                     <Link
-                        to={detailsUrl}
+                        to={detailsUrl || `/car/${title.toLowerCase().replace(/\s+/g, '-')}`}
                         className="text-xs font-medium text-blue-600 hover:text-blue-800 transition-colors duration-200"
                     >
                         View Details
