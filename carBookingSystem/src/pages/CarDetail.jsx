@@ -17,7 +17,7 @@ import {
 const CarDetail = () => {
   const { id } = useParams();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] =  useState(false);
 
   // Mock car data - replace with actual API call
   const carData = {
