@@ -16,7 +16,7 @@ import Contact from './pages/Contact'
 function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div className="min-h-screen  flex items-center justify-center ">Loading...</div>}>
+      <Suspense fallback={<div className="min-h-screen  flex items-center justify-center max-w-screen ">Loading...</div>}>
         <Routes>
           <Route path="/" element={<Layout><Home /></Layout>} />
           <Route path="/cars/new" element={<Layout><NewCars /></Layout>} />
