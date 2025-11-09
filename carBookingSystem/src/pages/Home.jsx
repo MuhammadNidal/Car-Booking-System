@@ -7,11 +7,13 @@ import ConsultationSection from "../components/home/ConsultationSection";
 import CallToActionSection from "../components/home/CallToActionSection";
 import SliderComponent from "../components/home/Slider";
 import BrowseCategory from "../components/home/BrowseCategory";
+import CarShowcase from "../components/home/CarShowcase";
 
 const Home = () => {
   return (
     <main>
       <HeroSection />
+      <CarShowcase />
       <CallToActionSection />
       <BrowseCategory />
       <SliderComponent />

@@ -198,7 +198,7 @@ const SliderComponent = () => {
                 <ul style={{ margin: "0px", padding: "0" }}> {dots} </ul>
             </div>
         ),
-        customPaging: (i) => (
+        customPaging: () => (
             <div className="w-2.5 h-2.5 bg-gray-300 rounded-full transition-all duration-300 slick-dot" />
         ),
     };

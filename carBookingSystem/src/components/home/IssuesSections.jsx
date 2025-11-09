@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 import { DollarSign, ShieldCheck, Wrench } from 'lucide-react';
 
 const sectionVariants = {

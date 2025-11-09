@@ -201,7 +201,7 @@ const BrowseCategory = () => {
       {/* Tabs */}
       <div className="relative mb-5">
         <ul className="flex flex-wrap border-b border-gray-300 mb-5 -mx-2">
-          {['category', 'city', 'make', 'model', 'budget', 'bodyType'].map(tab => (
+          {['category', 'city', 'Brand', 'model', 'budget', 'bodyType'].map(tab => (
             <li key={tab} className="px-2">
               <button
                 onClick={() => handleTabChange(tab)}
