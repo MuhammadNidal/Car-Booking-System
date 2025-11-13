@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Gauge, Fuel, Cog, Bookmark, BookmarkCheck } from "lucide-react";
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
-import { HeartIcon as HeartOutlineIcon } from '@heroicons/react/24/outline';
+import { HeartIcon as HeartOutlineIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
 
 const CarCard = ({
                      id,
@@ -20,11 +20,16 @@ const CarCard = ({
                      type,
                  }) => {
     const [isInWishlist, setIsInWishlist] = useState(false);
+    const [isInCompare, setIsInCompare] = useState(false);
 
     useEffect(() => {
         // Check if car is in wishlist
         const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
         setIsInWishlist(wishlist.includes(id));
+        
+        // Check if car is in compare
+        const compare = JSON.parse(localStorage.getItem('compare') || '[]');
+        setIsInCompare(compare.includes(id));
     }, [id]);
 
     const toggleWishlist = (e) => {
@@ -45,6 +50,30 @@ const CarCard = ({
         }
         
         localStorage.setItem('wishlist', JSON.stringify(newWishlist));
+    };
+
+    const toggleCompare = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const compare = JSON.parse(localStorage.getItem('compare') || '[]');
+        let newCompare;
+        
+        if (isInCompare) {
+            // Remove from compare
+            newCompare = compare.filter(itemId => itemId !== id);
+            setIsInCompare(false);
+        } else {
+            // Add to compare (max 3 cars)
+            if (compare.length >= 3) {
+                alert('You can only compare up to 3 cars at a time');
+                return;
+            }
+            newCompare = [...compare, id];
+            setIsInCompare(true);
+        }
+        
+        localStorage.setItem('compare', JSON.stringify(newCompare));
     };
 
     // Format price
@@ -84,6 +113,17 @@ const CarCard = ({
                     ) : (
                         <HeartOutlineIcon className="h-5 w-5 sm:h-6 sm:w-6" />
                     )}
+                </button>
+
+                {/* Compare Button */}
+                <button
+                    className={`absolute top-2 right-12 sm:top-3 sm:right-14 bg-white bg-opacity-90 backdrop-blur-sm rounded-full p-1.5 sm:p-2 transition-all duration-200 z-10 hover:scale-110 ${
+                        isInCompare ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
+                    }`}
+                    title={isInCompare ? "Remove from compare" : "Add to compare"}
+                    onClick={toggleCompare}
+                >
+                    <ArrowPathIcon className="h-5 w-5 sm:h-6 sm:w-6" />
                 </button>
 
                 {/* Type Badge */}
