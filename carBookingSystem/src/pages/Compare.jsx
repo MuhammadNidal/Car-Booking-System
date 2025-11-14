@@ -1,63 +1,86 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  XMarkIcon,
-  ArrowPathIcon,
-  PlusIcon
-} from '@heroicons/react/24/outline';
-import { Gauge, Fuel, Cog, Calendar, MapPin } from 'lucide-react';
+import { Leaf, Zap, DollarSign, Droplet, Clock, Battery, Gauge, Fuel } from 'lucide-react';
+
+// Static comparison data - 6 cars (3 pairs)
+const staticComparisons = [
+  {
+    id: 1,
+    leftCar: {
+      name: 'Tesla Model 3',
+      type: 'Electric',
+      image: 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80',
+      features: [
+        { icon: Leaf, label: 'Eco-Friendly', value: 'Zero Emissions' },
+        { icon: Zap, label: 'Charging', value: 'Slow Charging' },
+        { icon: DollarSign, label: 'Savings', value: 'Low Running Cost' },
+        { icon: Battery, label: 'Range', value: '350 km' }
+      ]
+    },
+    rightCar: {
+      name: 'Honda Civic',
+      type: 'Gasoline',
+      image: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&q=80',
+      features: [
+        { icon: Droplet, label: 'Emissions', value: 'CO2 Emissions' },
+        { icon: Fuel, label: 'Fuel', value: 'Expensive Fuel' },
+        { icon: Clock, label: 'Refuel', value: 'Quick Refuel' },
+        { icon: Gauge, label: 'Range', value: '600 km' }
+      ]
+    }
+  },
+  {
+    id: 2,
+    leftCar: {
+      name: 'Nissan Leaf',
+      type: 'Electric',
+      image: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80',
+      features: [
+        { icon: Leaf, label: 'Eco-Friendly', value: 'Zero Emissions' },
+        { icon: Zap, label: 'Charging', value: 'Slow Charging' },
+        { icon: DollarSign, label: 'Savings', value: 'Low Running Cost' },
+        { icon: Battery, label: 'Range', value: '300 km' }
+      ]
+    },
+    rightCar: {
+      name: 'Toyota Corolla',
+      type: 'Gasoline',
+      image: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&q=80',
+      features: [
+        { icon: Droplet, label: 'Emissions', value: 'CO2 Emissions' },
+        { icon: Fuel, label: 'Fuel', value: 'Expensive Fuel' },
+        { icon: Clock, label: 'Refuel', value: 'Quick Refuel' },
+        { icon: Gauge, label: 'Range', value: '650 km' }
+      ]
+    }
+  },
+  {
+    id: 3,
+    leftCar: {
+      name: 'BMW i4',
+      type: 'Electric',
+      image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=800&q=80',
+      features: [
+        { icon: Leaf, label: 'Eco-Friendly', value: 'Zero Emissions' },
+        { icon: Zap, label: 'Charging', value: 'Slow Charging' },
+        { icon: DollarSign, label: 'Savings', value: 'Low Running Cost' },
+        { icon: Battery, label: 'Range', value: '400 km' }
+      ]
+    },
+    rightCar: {
+      name: 'BMW 3 Series',
+      type: 'Gasoline',
+      image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80',
+      features: [
+        { icon: Droplet, label: 'Emissions', value: 'CO2 Emissions' },
+        { icon: Fuel, label: 'Fuel', value: 'Expensive Fuel' },
+        { icon: Clock, label: 'Refuel', value: 'Quick Refuel' },
+        { icon: Gauge, label: 'Range', value: '700 km' }
+      ]
+    }
+  }
+];
 
 export default function Compare() {
-  const [compareCars, setCompareCars] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    loadCompare();
-  }, []);
-
-  const loadCompare = () => {
-    try {
-      const compareData = JSON.parse(localStorage.getItem('compare') || '[]');
-      const allCars = JSON.parse(localStorage.getItem('cars') || '[]');
-      const cars = allCars.filter(car => compareData.includes(car.id));
-      setCompareCars(cars);
-    } catch (error) {
-      console.error('Error loading compare:', error);
-      setCompareCars([]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const removeFromCompare = (carId) => {
-    try {
-      const compareData = JSON.parse(localStorage.getItem('compare') || '[]');
-      const newCompare = compareData.filter(id => id !== carId);
-      localStorage.setItem('compare', JSON.stringify(newCompare));
-      loadCompare();
-    } catch (error) {
-      console.error('Error removing from compare:', error);
-    }
-  };
-
-  const clearAll = () => {
-    if (window.confirm('Clear all cars from comparison?')) {
-      localStorage.setItem('compare', JSON.stringify([]));
-      setCompareCars([]);
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading comparison...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
@@ -67,180 +90,126 @@ export default function Compare() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Compare Cars</h1>
-              <p className="text-gray-600 mt-1">
-                {compareCars.length} of 3 cars selected
-              </p>
+              <p className="text-gray-600 mt-1">Electric vs Gasoline Comparison</p>
             </div>
-            
-            {compareCars.length > 0 && (
-              <button
-                onClick={clearAll}
-                className="text-red-600 hover:text-red-700 font-medium transition-colors"
-              >
-                Clear All
-              </button>
-            )}
+            <Link
+              to="/cars/new"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Browse Cars
+            </Link>
           </div>
         </div>
 
-        {/* Empty State */}
-        {compareCars.length === 0 ? (
-          <div className="bg-white rounded-xl shadow-sm p-12 text-center">
-            <ArrowPathIcon className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No cars to compare</h3>
-            <p className="text-gray-600 mb-6">
-              Add cars from the listings to compare their features
-            </p>
-            <div className="space-y-3 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
-              <Link
-                to="/cars/new"
-                className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-              >
-                Browse New Cars
-              </Link>
-              <Link
-                to="/cars/used"
-                className="inline-block bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-              >
-                Browse Used Cars
-              </Link>
-            </div>
-          </div>
-        ) : (
-          <>
-            {/* Comparison Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {compareCars.map((car) => (
-                <div key={car.id} className="bg-white rounded-xl shadow-lg overflow-hidden">
-                  
-                  {/* Car Image */}
-                  <div className="relative">
-                    <img 
-                      src={car.image || car.imageUrl || 'https://via.placeholder.com/400x300/e5e7eb/6b7280?text=Car+Image'} 
-                      alt={car.title}
-                      className="w-full h-48 object-cover"
-                      onError={(e) => {
-                        e.target.src = 'https://via.placeholder.com/400x300/e5e7eb/6b7280?text=Car+Image';
-                      }}
-                    />
-                    
-                    {/* Remove Button */}
-                    <button
-                      onClick={() => removeFromCompare(car.id)}
-                      className="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md hover:bg-white transition-colors"
-                      title="Remove from comparison"
-                    >
-                      <XMarkIcon className="h-4 w-4 text-gray-700" />
-                    </button>
+        {/* Static Comparison View */}
+        <div className="space-y-8">
+          {staticComparisons.map((comparison) => (
+            <div key={comparison.id} className="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div className="bg-linear-to-r from-gray-50 to-gray-100 p-6 text-center border-b">
+                <h2 className="text-2xl font-bold text-gray-800">
+                  {comparison.leftCar.type} vs {comparison.rightCar.type} Comparison
+                </h2>
+              </div>
 
-                    {/* Type Badge */}
-                    <div className="absolute top-3 left-3">
-                      <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                        car.type === 'new' 
-                          ? 'bg-green-100 text-green-800' 
-                          : 'bg-blue-100 text-blue-800'
-                      }`}>
-                        {car.type === 'new' ? 'New' : 'Used'}
-                      </span>
+              <div className="grid md:grid-cols-2 divide-x divide-gray-200">
+                {/* Left Car - Electric */}
+                <div className="p-6">
+                  <div className="text-center mb-6">
+                    <div className="relative mb-4">
+                      <img 
+                        src={comparison.leftCar.image}
+                        alt={comparison.leftCar.name}
+                        className="w-full h-64 object-cover rounded-xl"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <span className="px-4 py-2 bg-teal-500 text-white text-sm font-bold rounded-full shadow-lg">
+                          {comparison.leftCar.type.toUpperCase()}
+                        </span>
+                      </div>
                     </div>
+                    <h3 className="text-2xl font-bold text-teal-600 mb-2">
+                      {comparison.leftCar.name}
+                    </h3>
                   </div>
 
-                  {/* Car Details */}
-                  <div className="p-4">
-                    <h3 className="font-bold text-lg text-gray-900 mb-2">
-                      {car.title}
-                    </h3>
-                    
-                    <div className="text-2xl font-bold text-blue-600 mb-4">
-                      {car.price || `₨${(Math.random() * 5000000 + 1000000).toLocaleString()}`}
-                    </div>
-
-                    {/* Specs */}
-                    <div className="space-y-3 text-sm">
-                      <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                        <div className="flex items-center gap-2 text-gray-600">
-                          <Calendar className="h-4 w-4" />
-                          <span>Year</span>
+                  <div className="space-y-4">
+                    {comparison.leftCar.features.map((feature, idx) => {
+                      const Icon = feature.icon;
+                      return (
+                        <div key={idx} className="flex items-center gap-4 p-3 bg-teal-50 rounded-lg">
+                          <div className="p-2 bg-teal-100 rounded-full">
+                            <Icon className="h-6 w-6 text-teal-600" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-sm text-gray-600">{feature.label}</p>
+                            <p className="font-semibold text-gray-900">{feature.value}</p>
+                          </div>
                         </div>
-                        <span className="font-medium text-gray-900">{car.year || '2020'}</span>
-                      </div>
-
-                      <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                        <div className="flex items-center gap-2 text-gray-600">
-                          <Gauge className="h-4 w-4" />
-                          <span>Mileage</span>
-                        </div>
-                        <span className="font-medium text-gray-900">{car.mileage || '25,000 km'}</span>
-                      </div>
-
-                      <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                        <div className="flex items-center gap-2 text-gray-600">
-                          <Fuel className="h-4 w-4" />
-                          <span>Fuel</span>
-                        </div>
-                        <span className="font-medium text-gray-900">{car.fuelType || 'Petrol'}</span>
-                      </div>
-
-                      <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                        <div className="flex items-center gap-2 text-gray-600">
-                          <Cog className="h-4 w-4" />
-                          <span>Transmission</span>
-                        </div>
-                        <span className="font-medium text-gray-900">{car.transmission || 'Automatic'}</span>
-                      </div>
-
-                      <div className="flex items-center justify-between py-2">
-                        <div className="flex items-center gap-2 text-gray-600">
-                          <MapPin className="h-4 w-4" />
-                          <span>Location</span>
-                        </div>
-                        <span className="font-medium text-gray-900">{car.location || 'Karachi'}</span>
-                      </div>
-                    </div>
-
-                    {/* View Details Button */}
-                    <Link
-                      to={`/cars/${car.id}`}
-                      className="mt-4 block w-full bg-blue-600 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-                    >
-                      View Details
-                    </Link>
+                      );
+                    })}
                   </div>
                 </div>
-              ))}
 
-              {/* Add More Placeholder */}
-              {compareCars.length < 3 && (
-                <Link
-                  to="/cars/new"
-                  className="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-dashed border-gray-300 hover:border-blue-500 transition-colors flex items-center justify-center min-h-[400px] group"
-                >
-                  <div className="text-center p-6">
-                    <PlusIcon className="h-12 w-12 text-gray-400 group-hover:text-blue-500 mx-auto mb-3 transition-colors" />
-                    <p className="text-gray-600 group-hover:text-blue-600 font-medium transition-colors">
-                      Add another car
-                    </p>
+                {/* Right Car - Gasoline */}
+                <div className="p-6">
+                  <div className="text-center mb-6">
+                    <div className="relative mb-4">
+                      <img 
+                        src={comparison.rightCar.image}
+                        alt={comparison.rightCar.name}
+                        className="w-full h-64 object-cover rounded-xl"
+                      />
+                      <div className="absolute top-4 right-4">
+                        <span className="px-4 py-2 bg-blue-500 text-white text-sm font-bold rounded-full shadow-lg">
+                          {comparison.rightCar.type.toUpperCase()}
+                        </span>
+                      </div>
+                    </div>
+                    <h3 className="text-2xl font-bold text-blue-600 mb-2">
+                      {comparison.rightCar.name}
+                    </h3>
                   </div>
-                </Link>
-              )}
-            </div>
 
-            {/* Browse More */}
-            <div className="mt-8 text-center">
-              <p className="text-gray-600 mb-4">
-                Want to compare different cars?
-              </p>
-              <div className="space-y-3 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
-                <Link
-                  to="/cars/new"
-                  className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-                >
-                  Browse More Cars
-                </Link>
+                  <div className="space-y-4">
+                    {comparison.rightCar.features.map((feature, idx) => {
+                      const Icon = feature.icon;
+                      return (
+                        <div key={idx} className="flex items-center gap-4 p-3 bg-blue-50 rounded-lg">
+                          <div className="p-2 bg-blue-100 rounded-full">
+                            <Icon className="h-6 w-6 text-blue-600" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-sm text-gray-600">{feature.label}</p>
+                            <p className="font-semibold text-gray-900">{feature.value}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             </div>
-          </>
-        )}
+          ))}
+        </div>
+
+        {/* Browse More */}
+        <div className="mt-8 text-center">
+          <p className="text-gray-600 mb-4">Want to explore more cars?</p>
+          <div className="space-y-3 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
+            <Link
+              to="/cars/new"
+              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            >
+              Browse New Cars
+            </Link>
+            <Link
+              to="/cars/used"
+              className="inline-block bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+            >
+              Browse Used Cars
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
