@@ -13,7 +13,11 @@ import RentCars from './pages/RentCars'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Compare from './pages/Compare'
+<<<<<<< HEAD
 import Login from './pages/Login'
+=======
+import PriceEstimator from './pages/PriceEstimator'
+>>>>>>> f07d75f2823d9c740fabf3ac63973b3f91775570
 
 function App() {
   return (
@@ -29,6 +33,7 @@ function App() {
           <Route path="/wishlist" element={<Layout><Wishlist /></Layout>} />
           <Route path="/rent" element={<Layout><RentCars /></Layout>} />
           <Route path="/compare" element={<Layout><Compare /></Layout>} />
+          <Route path="/price-estimator" element={<Layout><PriceEstimator /></Layout>} />
           <Route path="/about" element={<Layout><About /></Layout>} />
           <Route path="/contact" element={<Layout><Contact /></Layout>} />
           <Route path="/contact" element={<Layout><Login /></Layout>} />
