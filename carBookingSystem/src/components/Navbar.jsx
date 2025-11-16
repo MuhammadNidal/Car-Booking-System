@@ -10,7 +10,7 @@ import logo from "/src/assets/logo.png"
 const navigation = [
   { name: 'Sell', href: '/sell' },
   { name: 'Compare', href: '/compare' },
-  { name: 'Price Estimator', href: '/estimator' },
+  { name: 'Price Estimator', href: '/price-estimator' },
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ];
