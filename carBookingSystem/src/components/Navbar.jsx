@@ -128,7 +128,7 @@ export default function Navbar() {
                       <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
                     )}
                   </DisclosureButton>
-                </div>
+                </div> 
               </div>
             </div>
           </div>
