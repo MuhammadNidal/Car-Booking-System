@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const sectionVariants = {
   hidden: { 
@@ -30,7 +31,10 @@ const itemVariants = {
   }
 };
 
-const ConsultationSection = () => (
+const ConsultationSection = () => {
+  const navigate = useNavigate();
+  const handleBook = () => navigate('/contact');
+  return (
   <motion.section 
     className="py-20 bg-white overflow-hidden"
     variants={sectionVariants}
@@ -59,6 +63,7 @@ const ConsultationSection = () => (
           className="bg-blue-900 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-800 transition-colors duration-300"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={handleBook}
         >
           Book Consultation
         </motion.button>
@@ -66,7 +71,8 @@ const ConsultationSection = () => (
       
     </div>
   </motion.section>
-);
+  );
+}
 
 export default ConsultationSection;
 

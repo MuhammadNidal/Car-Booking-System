@@ -13,11 +13,11 @@ import RentCars from './pages/RentCars'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Compare from './pages/Compare'
-<<<<<<< HEAD
 import Login from './pages/Login'
-=======
+import Signup from './pages/Signup'
+import Profile from './pages/Profile'
+
 import PriceEstimator from './pages/PriceEstimator'
->>>>>>> f07d75f2823d9c740fabf3ac63973b3f91775570
 
 function App() {
   return (
@@ -36,7 +36,9 @@ function App() {
           <Route path="/price-estimator" element={<Layout><PriceEstimator /></Layout>} />
           <Route path="/about" element={<Layout><About /></Layout>} />
           <Route path="/contact" element={<Layout><Contact /></Layout>} />
-          <Route path="/contact" element={<Layout><Login /></Layout>} />
+          <Route path="/login" element={<Layout><Login /></Layout>} />
+          <Route path="/signup" element={<Layout><Signup /></Layout>} />
+          <Route path="/profile" element={<Layout><Profile /></Layout>} />
           <Route path="*" element={<Layout><NotFound /></Layout>} />
         </Routes>
       </Suspense>

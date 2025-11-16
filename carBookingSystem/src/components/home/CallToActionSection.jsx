@@ -74,7 +74,7 @@ const CallToActionSection = () => {
               </motion.button>
             </div>
 
-            <motion.div className="flex-shrink-0" variants={iconVariants}>
+            <motion.div className="shrink-0" variants={iconVariants}>
               <CarFront size={110} className="text-blue-500" strokeWidth={1.5} />
             </motion.div>
           </motion.div>
@@ -107,7 +107,7 @@ const CallToActionSection = () => {
               </motion.button>
             </div>
 
-            <motion.div className="flex-shrink-0" variants={iconVariants}>
+            <motion.div className="shrink-0" variants={iconVariants}>
               <BadgeDollarSign size={110} className="text-pink-500" strokeWidth={1.5} />
             </motion.div>
           </motion.div>

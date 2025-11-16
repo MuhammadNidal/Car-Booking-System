@@ -236,13 +236,13 @@ const BrowseCategory = () => {
                   {slides.category.map((slideItems, index) => (
                     <ul
                       key={`category-slide-${index}`}
-                      className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full flex-shrink-0"
+                      className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full shrink-0"
                     >
                       {slideItems.map((item, idx) => (
                         <li key={`category-item-${index}-${idx}`} className="text-center">
                           <a
                             href={item.url}
-                            className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-200 transition-all hover:-translate-y-0.5 h-full flex flex-col items-center justify-center"
+                            className="flex p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-200 transition-all hover:-translate-y-0.5 h-full flex-col items-center justify-center"
                             onClick={(e) => handleLinkClick(e, item.text)}
                           >
                             <img
@@ -308,7 +308,7 @@ const BrowseCategory = () => {
                 <div key={`city-${index}`} className="text-center">
                   <a
                     href={city.url}
-                    className="block p-3 py-8 bg-gray-50 hover:bg-white rounded-lg border border-gray-200 hover:border-blue-200 transition-all hover:-translate-y-0.5 h-full flex items-center justify-center group"
+                    className="flex p-3 py-8 bg-gray-50 hover:bg-white rounded-lg border border-gray-200 hover:border-blue-200 transition-all hover:-translate-y-0.5 h-full items-center justify-center group"
                     onClick={(e) => handleLinkClick(e, city.text)}
                   >
                     <span className="text-sm font-semibold text-gray-800 group-hover:text-blue-900 transition-colors">{city.text}</span>
@@ -335,13 +335,13 @@ const BrowseCategory = () => {
                   {slides.brand.map((slideItems, index) => (
                     <ul
                       key={`brand-slide-${index}`}
-                      className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full flex-shrink-0"
+                      className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full shrink-0"
                     >
                       {slideItems.map((item, idx) => (
                         <li key={`brand-item-${index}-${idx}`} className="text-center">
                           <a
                             href={item.url}
-                            className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-200 transition-all hover:-translate-y-0.5 h-full flex flex-col items-center justify-center"
+                            className="flex p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-200 transition-all hover:-translate-y-0.5 h-full flex-col items-center justify-center"
                             onClick={(e) => handleLinkClick(e, item.text)}
                           >
                             <img
@@ -407,7 +407,7 @@ const BrowseCategory = () => {
                 <div key={`model-${index}`} className="text-center">
                   <a
                     href={model.url}
-                    className="block p-3 py-8 bg-gray-50 hover:bg-white rounded-lg border border-gray-200 hover:border-blue-200 transition-all hover:-translate-y-0.5 h-full flex items-center justify-center group"
+                    className="flex p-3 py-8 bg-gray-50 hover:bg-white rounded-lg border border-gray-200 hover:border-blue-200 transition-all hover:-translate-y-0.5 h-full items-center justify-center group"
                     onClick={(e) => handleLinkClick(e, model.text)}
                   >
                     <span className="text-sm font-semibold text-gray-800 group-hover:text-blue-900 transition-colors">{model.text}</span>
@@ -424,7 +424,7 @@ const BrowseCategory = () => {
                 <div key={`budget-${index}`} className="text-center">
                   <a
                     href={budget.url}
-                    className="block p-3 py-8 bg-gray-50 hover:bg-white rounded-lg border border-gray-200 hover:border-blue-200 transition-all hover:-translate-y-0.5 h-full flex items-center justify-center group"
+                    className="flex p-3 py-8 bg-gray-50 hover:bg-white rounded-lg border border-gray-200 hover:border-blue-200 transition-all hover:-translate-y-0.5 h-full items-center justify-center group"
                     onClick={(e) => handleLinkClick(e, budget.text)}
                   >
                     <span className="text-sm font-semibold text-gray-800 group-hover:text-blue-900 transition-colors text-center">{budget.text}</span>
@@ -451,13 +451,13 @@ const BrowseCategory = () => {
                   {slides.bodyType.map((slideItems, index) => (
                     <ul
                       key={`bodytype-slide-${index}`}
-                      className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full flex-shrink-0"
+                      className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full shrink-0"
                     >
                       {slideItems.map((item, idx) => (
                         <li key={`bodytype-item-${index}-${idx}`} className="text-center">
                           <a
                             href={item.url}
-                            className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-200 transition-all hover:-translate-y-0.5 h-full flex flex-col items-center justify-center"
+                            className="flex p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-200 transition-all hover:-translate-y-0.5 h-full flex-col items-center justify-center"
                             onClick={(e) => handleLinkClick(e, item.text)}
                           >
                             <img

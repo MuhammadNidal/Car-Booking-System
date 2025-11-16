@@ -137,81 +137,19 @@ export default function Wishlist() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {wishlistCars.map((car) => (
-              <div key={car.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
-                
-                {/* Car Image */}
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={car.image || car.imageUrl || 'https://via.placeholder.com/400x300/e5e7eb/6b7280?text=Car+Image'} 
-                    alt={car.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    onError={(e) => {
-                      e.target.src = 'https://via.placeholder.com/400x300/e5e7eb/6b7280?text=Car+Image';
-                    }}
-                  />
-                  
-                  {/* Remove from Wishlist Button */}
-                  <button
-                    onClick={() => removeFromWishlist(car.id)}
-                    className="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md hover:bg-white transition-colors duration-200 group"
-                    title="Remove from wishlist"
-                  >
-                    <TrashIcon className="h-4 w-4 text-red-500 group-hover:text-red-600" />
-                  </button>
-
-                  {/* Type Badge */}
-                  <div className="absolute top-3 left-3">
-                    <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                      car.type === 'new' 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-blue-100 text-blue-800'
-                    }`}>
-                      {car.type === 'new' ? 'New' : 'Used'}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Car Details */}
-                <div className="p-4">
-                  <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-1">
-                    {car.title}
-                  </h3>
-                  
-                  <div className="text-xl font-bold text-blue-600 mb-3">
-                    {car.price || `₨${(Math.random() * 5000000 + 1000000).toLocaleString()}`}
-                  </div>
-
-                  {/* Car Info */}
-                  <div className="space-y-2 text-sm text-gray-600 mb-4">
-                    <div className="flex items-center gap-2">
-                      <CalendarIcon className="h-4 w-4" />
-                      <span>{car.year || '2020'}</span>
-                      <span>•</span>
-                      <span>{car.mileage || '25,000 km'}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPinIcon className="h-4 w-4" />
-                      <span>{car.location || 'Karachi'}</span>
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex gap-2">
-                    <Link
-                      to={`/cars/${car.id}`}
-                      className="flex-1 bg-blue-600 text-white text-center py-2 px-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200"
-                    >
-                      View Details
-                    </Link>
-                    <Link
-                      to={`/cars/${car.id}`}
-                      className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
-                    >
-                      <EyeIcon className="h-5 w-5 text-gray-600" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
+              <CarCard
+                key={car.id}
+                id={car.id}
+                imageUrl={car.image || car.imageUrl}
+                title={car.title}
+                specsSubtitle={car.specsSubtitle || `${car.year || '2020'} • ${car.location || 'Karachi'}`}
+                mileage={car.mileage || '0 km'}
+                fuelType={car.fuelType || 'Unknown'}
+                transmission={car.transmission || 'Unknown'}
+                price={car.price}
+                detailsUrl={`/cars/${car.id}`}
+                type={car.type || 'used'}
+              />
             ))}
           </div>
         )}

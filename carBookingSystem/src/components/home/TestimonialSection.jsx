@@ -23,7 +23,7 @@ const TestimonialCard = ({ quote, name, title, avatar, rating = 5 }) => (
     </div>
 
     {/* Quote */}
-    <blockquote className="text-gray-700 text-lg leading-relaxed mb-6 italic flex-grow">
+    <blockquote className="text-gray-700 text-lg leading-relaxed mb-6 italic grow">
       "{quote}"
     </blockquote>
 
@@ -44,7 +44,7 @@ const TestimonialCard = ({ quote, name, title, avatar, rating = 5 }) => (
     </div>
 
     {/* Decorative gradient */}
-    <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-100"></div>
+    <div className="absolute inset-0 bg-linear-to-br from-blue-50/50 to-transparent rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-100"></div>
   </div>
 );
 
@@ -74,7 +74,7 @@ const TestimonialSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
+    <section className="py-20 bg-linear-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
       {/* Background Decorations */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse delay-1000"></div>

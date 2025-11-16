@@ -10,6 +10,7 @@ import {
   CurrencyDollarIcon,
   ChartBarIcon
 } from '@heroicons/react/24/outline';
+import CarCard from '../components/CarCard';
 
 export default function SellerDashboard() {
   const navigate = useNavigate();
@@ -213,56 +214,29 @@ export default function SellerDashboard() {
                     </button>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {myListings.map((car) => (
-                      <div key={car.id} className="border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
-                        <div className="relative">
-                          <img 
-                            src={car.image || car.imageUrl || 'https://via.placeholder.com/400x300/e5e7eb/6b7280?text=Car+Image'} 
-                            alt={car.title}
-                            className="w-full h-48 object-cover"
-                            onError={(e) => {
-                              e.target.src = 'https://via.placeholder.com/400x300/e5e7eb/6b7280?text=Car+Image';
-                            }}
-                          />
-                          <div className="absolute top-3 left-3">
-                            <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                              car.type === 'new' || car.isNew
-                                ? 'bg-green-100 text-green-800' 
-                                : 'bg-blue-100 text-blue-800'
-                            }`}>
-                              {car.type === 'new' || car.isNew ? 'New' : 'Used'}
-                            </span>
-                          </div>
-                        </div>
-                        
-                        <div className="p-4">
-                          <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-1">
-                            {car.title}
-                          </h3>
-                          <p className="text-xl font-bold text-blue-600 mb-3">
-                            {car.price}
-                          </p>
-                          <p className="text-sm text-gray-600 mb-4 line-clamp-2">
-                            {car.specsSubtitle || car.description || 'No description available'}
-                          </p>
-                          
-                          <div className="flex gap-2">
-                            <Link
-                              to={`/cars/${car.id}`}
-                              className="flex-1 bg-blue-600 text-white text-center py-2 px-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-                            >
-                              View Details
-                            </Link>
-                            <button
-                              onClick={() => setShowDeleteModal(car.id)}
-                              className="px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-                              title="Delete listing"
-                            >
-                              <TrashIcon className="h-5 w-5" />
-                            </button>
-                          </div>
-                        </div>
+                      <div key={car.id} className="relative">
+                        <CarCard
+                          id={car.id}
+                          imageUrl={car.image || car.imageUrl}
+                          title={car.title}
+                          specsSubtitle={car.specsSubtitle || `${car.year || '2020'} • ${car.location || 'Karachi'}`}
+                          mileage={car.mileage || '0 km'}
+                          fuelType={car.fuelType || 'Unknown'}
+                          transmission={car.transmission || 'Unknown'}
+                          price={car.price}
+                          detailsUrl={`/cars/${car.id}`}
+                          type={car.type || 'used'}
+                        />
+                        {/* Delete Button Overlay */}
+                        <button
+                          onClick={() => setShowDeleteModal(car.id)}
+                          className="absolute top-16 right-2 bg-red-600 text-white p-2 rounded-full hover:bg-red-700 transition-colors z-20"
+                          title="Delete listing"
+                        >
+                          <TrashIcon className="h-5 w-5" />
+                        </button>
                       </div>
                     ))}
                   </div>
