@@ -13,6 +13,7 @@ import RentCars from './pages/RentCars'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Compare from './pages/Compare'
+import Login from './pages/Login'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/compare" element={<Layout><Compare /></Layout>} />
           <Route path="/about" element={<Layout><About /></Layout>} />
           <Route path="/contact" element={<Layout><Contact /></Layout>} />
+          <Route path="/contact" element={<Layout><Login /></Layout>} />
           <Route path="*" element={<Layout><NotFound /></Layout>} />
         </Routes>
       </Suspense>

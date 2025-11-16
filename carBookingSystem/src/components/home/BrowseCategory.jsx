@@ -4,7 +4,7 @@ const BrowseCategory = () => {
   const [activeTab, setActiveTab] = useState('category');
   const [activeSlide, setActiveSlide] = useState({
     category: 0,
-    make: 0,
+    brand: 0,
     bodyType: 0
   });
   
@@ -66,7 +66,7 @@ const BrowseCategory = () => {
       { text: 'Hyderabad', url: '/used-cars/hyderabad/24771' },
       { text: 'Abbottabad', url: '/used-cars/abbottabad/727521' }
     ],
-    make: [
+    brand: [
       [
         { img: 'https://cache3.pakwheels.com/system/car_manufacturers/manufacturers/000/000/041/resized/Suzuki.png', text: 'Suzuki', url: '/used-cars/suzuki/32' },
         { img: 'https://cache4.pakwheels.com/system/car_manufacturers/manufacturers/000/000/042/resized/Tyota.png', text: 'Toyota', url: '/used-cars/toyota/33' },
@@ -201,7 +201,7 @@ const BrowseCategory = () => {
       {/* Tabs */}
       <div className="relative mb-5">
         <ul className="flex flex-wrap border-b border-gray-300 mb-5 -mx-2">
-          {['category', 'city', 'Brand', 'model', 'budget', 'bodyType'].map(tab => (
+          {['category', 'city', 'brand', 'model', 'budget', 'bodyType'].map(tab => (
             <li key={tab} className="px-2">
               <button
                 onClick={() => handleTabChange(tab)}
@@ -318,8 +318,8 @@ const BrowseCategory = () => {
             </div>
           )}
 
-          {/* Make Tab */}
-          {activeTab === 'make' && (
+          {/* Brand Tab */}
+          {activeTab === 'brand' && (
             <div 
               ref={carouselRef}
               className="relative overflow-hidden touch-pan-y"
@@ -330,15 +330,15 @@ const BrowseCategory = () => {
               <div className="relative pb-6">
                 <div 
                   className="flex transition-transform duration-500 ease-in-out"
-                  style={{ transform: `translateX(-${activeSlide.make * 100}%)` }}
+                  style={{ transform: `translateX(-${activeSlide.brand * 100}%)` }}
                 >
-                  {slides.make.map((slideItems, index) => (
+                  {slides.brand.map((slideItems, index) => (
                     <ul
-                      key={`make-slide-${index}`}
+                      key={`brand-slide-${index}`}
                       className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full flex-shrink-0"
                     >
                       {slideItems.map((item, idx) => (
-                        <li key={`make-item-${index}-${idx}`} className="text-center">
+                        <li key={`brand-item-${index}-${idx}`} className="text-center">
                           <a
                             href={item.url}
                             className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-200 transition-all hover:-translate-y-0.5 h-full flex flex-col items-center justify-center"
@@ -359,14 +359,14 @@ const BrowseCategory = () => {
                 </div>
 
                 {/* Indicators */}
-                {slides.make.length > 1 && (
+                {slides.brand.length > 1 && (
                   <ol className="absolute bottom-0 left-0 right-0 flex justify-center z-10 space-x-2">
-                    {slides.make.map((_, index) => (
-                      <li key={`make-indicator-${index}`}>
+                    {slides.brand.map((_, index) => (
+                      <li key={`brand-indicator-${index}`}>
                         <button
-                          onClick={() => goToSlide('make', index)}
+                          onClick={() => goToSlide('brand', index)}
                           className={`w-2 h-2 rounded-full transition-colors ${
-                            activeSlide.make === index ? 'bg-blue-900' : 'bg-gray-300'
+                            activeSlide.brand === index ? 'bg-blue-900' : 'bg-gray-300'
                           }`}
                           aria-label={`Go to slide ${index + 1}`}
                         >
@@ -378,17 +378,17 @@ const BrowseCategory = () => {
                 )}
 
                 {/* Controls - NEW ARROW UI */}
-                {slides.make.length > 1 && (
+                {slides.brand.length > 1 && (
                   <>
                     <button
-                      onClick={() => prevSlide('make')}
+                      onClick={() => prevSlide('brand')}
                       className="absolute top-1/2 -translate-y-1/2 left-2 w-10 h-10 rounded-full bg-white text-blue-900 shadow-lg flex items-center justify-center opacity-90 hover:opacity-100 transition-all z-20"
                       aria-label="Previous slide"
                     >
                       <span className="text-2xl font-bold">‹</span>
                     </button>
                     <button
-                      onClick={() => nextSlide('make')}
+                      onClick={() => nextSlide('brand')}
                       className="absolute top-1/2 -translate-y-1/2 right-2 w-10 h-10 rounded-full bg-white text-blue-900 shadow-lg flex items-center justify-center opacity-90 hover:opacity-100 transition-all z-20"
                       aria-label="Next slide"
                     >

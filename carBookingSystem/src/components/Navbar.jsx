@@ -20,7 +20,7 @@ const buyCarLinks = [
   { name: 'Used Cars', href: '/cars/used' },
   { name: 'Booked Cars', href: '/cars/booked' },
   { name: 'Wishlist', href: '/wishlist' },
-  { name: 'Rent Cars', href: '/rent' },
+  // { name: 'Rent Cars', href: '/rent' },
 ];
 
 // Helper function to combine class names

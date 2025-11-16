@@ -2,7 +2,7 @@ import React from 'react';
 import { Star, Quote } from 'lucide-react';
 
 const TestimonialCard = ({ quote, name, title, avatar, rating = 5 }) => (
-  <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+  <div className="group relative bg-white rounded-2xl p-8 shadow-lg transition-all duration-300 transform border border-gray-100 h-full flex flex-col">
     {/* Quote Icon */}
     <div className="absolute -top-4 left-8">
       <div className="bg-blue-900 rounded-full p-3 shadow-lg">
@@ -23,12 +23,12 @@ const TestimonialCard = ({ quote, name, title, avatar, rating = 5 }) => (
     </div>
 
     {/* Quote */}
-    <blockquote className="text-gray-700 text-lg leading-relaxed mb-6 italic">
+    <blockquote className="text-gray-700 text-lg leading-relaxed mb-6 italic flex-grow">
       "{quote}"
     </blockquote>
 
     {/* Author */}
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 mt-auto pt-6 border-t border-gray-100">
       <div className="relative">
         <img
           src={avatar}
@@ -44,7 +44,7 @@ const TestimonialCard = ({ quote, name, title, avatar, rating = 5 }) => (
     </div>
 
     {/* Decorative gradient */}
-    <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+    <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-100"></div>
   </div>
 );
 
@@ -54,7 +54,7 @@ const TestimonialSection = () => {
       quote: 'AutoChoice made buying my dream car incredibly easy. The team was professional, transparent about pricing, and helped me through every step. Highly recommend!',
       name: 'Aisha Khan',
       title: 'Happy Car Owner',
-      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
       rating: 5
     },
     {
@@ -95,7 +95,7 @@ const TestimonialSection = () => {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 auto-rows-max md:auto-rows-[420px] lg:auto-rows-[420px]">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
@@ -131,7 +131,7 @@ const TestimonialSection = () => {
 
         {/* CTA */}
         <div className="text-center mt-12">
-          <button className="inline-flex items-center gap-2 bg-blue-900 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+          <button className="inline-flex items-center gap-2 bg-blue-900 text-white px-8 py-4 rounded-full font-semibold  transition-all duration-300 transform  shadow-lg ">
             <Star className="h-5 w-5 fill-current" />
             Read All Reviews
           </button>
