@@ -18,6 +18,8 @@ import Signup from './pages/Signup'
 import Profile from './pages/Profile'
 
 import PriceEstimator from './pages/PriceEstimator'
+import Sell from './pages/Sell'
+import SellerLogin from './pages/SellerLogin'
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
           <Route path="/rent" element={<Layout><RentCars /></Layout>} />
           <Route path="/compare" element={<Layout><Compare /></Layout>} />
           <Route path="/price-estimator" element={<Layout><PriceEstimator /></Layout>} />
+          <Route path="/sell" element={<Layout><Sell /></Layout>} />
+          <Route path="/seller/login" element={<Layout><SellerLogin /></Layout>} />
           <Route path="/about" element={<Layout><About /></Layout>} />
           <Route path="/contact" element={<Layout><Contact /></Layout>} />
           <Route path="/login" element={<Layout><Login /></Layout>} />

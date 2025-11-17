@@ -34,12 +34,21 @@ export default function SellerDashboard() {
   });
 
   useEffect(() => {
-    const raw = localStorage.getItem('sellerUser');
-    if (!raw) {
-      navigate('/');
+    const currentUser = localStorage.getItem('currentUser');
+    const currentSeller = localStorage.getItem('currentSeller');
+    
+    if (!currentUser && !currentSeller) {
+      navigate('/seller/login');
       return;
     }
-    setUser(JSON.parse(raw));
+    
+    const userData = JSON.parse(currentUser || currentSeller);
+    if (userData.role !== 'seller') {
+      navigate('/seller/login');
+      return;
+    }
+    
+    setUser(userData);
     loadMyListings();
   }, [navigate]);
 
@@ -106,8 +115,9 @@ export default function SellerDashboard() {
 
   const handleLogout = () => {
     if (window.confirm('Are you sure you want to logout?')) {
-      localStorage.removeItem('sellerUser');
-      navigate('/');
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('currentSeller');
+      window.location.href = '/';
     }
   };
 
