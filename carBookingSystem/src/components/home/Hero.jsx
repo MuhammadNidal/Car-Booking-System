@@ -212,7 +212,7 @@ const HeroSection = () => {
               // FIX 4: Changed `rounded-md` to `rounded-lg`
               className="inline-flex w-full justify-between items-center gap-x-1.5 rounded-lg sm:rounded-full bg-white p-3 text-sm sm:text-base text-gray-700 hover:bg-gray-100 transition-colors duration-150 shadow-sm"
             >
-              {searchData.make || "Any Makes"}
+              {searchData.make || "Any Brand"}
               <ChevronDownIcon
                 className="-mr-1 h-5 w-5 text-gray-400"
                 aria-hidden="true"

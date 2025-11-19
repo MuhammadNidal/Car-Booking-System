@@ -2,21 +2,21 @@ import { Link } from 'react-router-dom';
 import CarCard from '../components/CarCard';
 import { CheckCircle, XCircle } from 'lucide-react';
 
-// Static comparison data - 6 cars in 3 comparison pairs (New vs Used)
+// Static comparison data - Different car models comparison
 const comparisons = [
   {
     id: 1,
     car1: {
       id: 101,
       title: 'Toyota Corolla',
-      specsSubtitle: '2023 Model',
+      specsSubtitle: '1.8L • Sedan • 2023',
       imageUrl: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&q=80',
       price: '59.9 Lakh',
-      mileage: '0 km',
+      mileage: '14 kmpl',
       fuelType: 'Petrol',
       transmission: 'Automatic',
       detailsUrl: '/cars/101',
-      type: 'New',
+      type: 'Toyota Corolla',
       features: {
         'Air Conditioning': true,
         'Power Steering': true,
@@ -25,29 +25,33 @@ const comparisons = [
         'Navigation System': true,
         'Reverse Camera': true,
         'ABS Brakes': true,
-        'Leather Seats': false
+        'Leather Seats': true,
+        'Cruise Control': true,
+        'Heated Seats': false
       }
     },
     car2: {
       id: 102,
-      title: 'Toyota Corolla',
-      specsSubtitle: '2020 Model',
-      imageUrl: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&q=80',
-      price: '45.5 Lakh',
-      mileage: '35,000 km',
+      title: 'Honda City',
+      specsSubtitle: '1.5L • Sedan • 2023',
+      imageUrl: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800&q=80',
+      price: '46.5 Lakh',
+      mileage: '16 kmpl',
       fuelType: 'Petrol',
       transmission: 'Automatic',
       detailsUrl: '/cars/102',
-      type: 'Used',
+      type: 'Honda City',
       features: {
         'Air Conditioning': true,
         'Power Steering': true,
-        'Sunroof': false,
+        'Sunroof': true,
         'Alloy Wheels': true,
-        'Navigation System': false,
+        'Navigation System': true,
         'Reverse Camera': true,
         'ABS Brakes': true,
-        'Leather Seats': false
+        'Leather Seats': false,
+        'Cruise Control': true,
+        'Heated Seats': false
       }
     }
   },
@@ -56,14 +60,14 @@ const comparisons = [
     car1: {
       id: 103,
       title: 'Honda Civic',
-      specsSubtitle: '2023 Model',
+      specsSubtitle: '1.5L Turbo • Sedan • 2023',
       imageUrl: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&q=80',
       price: '86.6 Lakh',
-      mileage: '0 km',
+      mileage: '13 kmpl',
       fuelType: 'Petrol',
-      transmission: 'Automatic',
+      transmission: 'CVT',
       detailsUrl: '/cars/103',
-      type: 'New',
+      type: 'Honda Civic',
       features: {
         'Air Conditioning': true,
         'Power Steering': true,
@@ -72,67 +76,22 @@ const comparisons = [
         'Navigation System': true,
         'Reverse Camera': true,
         'ABS Brakes': true,
-        'Leather Seats': true
+        'Leather Seats': true,
+        'Cruise Control': true,
+        'Heated Seats': true
       }
     },
     car2: {
       id: 104,
-      title: 'Honda Civic',
-      specsSubtitle: '2019 Model',
-      imageUrl: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&q=80',
-      price: '52.5 Lakh',
-      mileage: '45,000 km',
-      fuelType: 'Petrol',
-      transmission: 'Automatic',
-      detailsUrl: '/cars/104',
-      type: 'Used',
-      features: {
-        'Air Conditioning': true,
-        'Power Steering': true,
-        'Sunroof': false,
-        'Alloy Wheels': true,
-        'Navigation System': false,
-        'Reverse Camera': false,
-        'ABS Brakes': true,
-        'Leather Seats': true
-      }
-    }
-  },
-  {
-    id: 3,
-    car1: {
-      id: 105,
-      title: 'Honda City',
-      specsSubtitle: '2023 Model',
-      imageUrl: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800&q=80',
-      price: '46.5 Lakh',
-      mileage: '0 km',
-      fuelType: 'Petrol',
-      transmission: 'Automatic',
-      detailsUrl: '/cars/105',
-      type: 'New',
-      features: {
-        'Air Conditioning': true,
-        'Power Steering': true,
-        'Sunroof': true,
-        'Alloy Wheels': true,
-        'Navigation System': true,
-        'Reverse Camera': true,
-        'ABS Brakes': true,
-        'Leather Seats': false
-      }
-    },
-    car2: {
-      id: 106,
-      title: 'Honda City',
-      specsSubtitle: '2018 Model',
-      imageUrl: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800&q=80',
-      price: '32.9 Lakh',
-      mileage: '55,000 km',
+      title: 'Suzuki Alto',
+      specsSubtitle: '0.66L • Hatchback • 2023',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSrFTGbvF_YEO9cocFDZ_wO1Uki8TwTH1mVA&s',
+      price: '23.3 Lakh',
+      mileage: '22 kmpl',
       fuelType: 'Petrol',
       transmission: 'Manual',
-      detailsUrl: '/cars/106',
-      type: 'Used',
+      detailsUrl: '/cars/104',
+      type: 'Suzuki Alto',
       features: {
         'Air Conditioning': true,
         'Power Steering': true,
@@ -141,7 +100,60 @@ const comparisons = [
         'Navigation System': false,
         'Reverse Camera': false,
         'ABS Brakes': true,
-        'Leather Seats': false
+        'Leather Seats': false,
+        'Cruise Control': false,
+        'Heated Seats': false
+      }
+    }
+  },
+  {
+    id: 3,
+    car1: {
+      id: 105,
+      title: 'Toyota Fortuner',
+      specsSubtitle: '2.7L • SUV • 2023',
+      imageUrl: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&q=80',
+      price: '114.0 Lakh',
+      mileage: '10 kmpl',
+      fuelType: 'Diesel',
+      transmission: 'Automatic',
+      detailsUrl: '/cars/105',
+      type: 'Toyota Fortuner',
+      features: {
+        'Air Conditioning': true,
+        'Power Steering': true,
+        'Sunroof': true,
+        'Alloy Wheels': true,
+        'Navigation System': true,
+        'Reverse Camera': true,
+        'ABS Brakes': true,
+        'Leather Seats': true,
+        'Cruise Control': true,
+        'Heated Seats': true
+      }
+    },
+    car2: {
+      id: 106,
+      title: 'Kia Sportage',
+      specsSubtitle: '2.0L • SUV • 2023',
+      imageUrl: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&q=80',
+      price: '99.5 Lakh',
+      mileage: '11 kmpl',
+      fuelType: 'Petrol',
+      transmission: 'Automatic',
+      detailsUrl: '/cars/106',
+      type: 'Kia Sportage',
+      features: {
+        'Air Conditioning': true,
+        'Power Steering': true,
+        'Sunroof': true,
+        'Alloy Wheels': true,
+        'Navigation System': true,
+        'Reverse Camera': true,
+        'ABS Brakes': true,
+        'Leather Seats': true,
+        'Cruise Control': true,
+        'Heated Seats': false
       }
     }
   }
@@ -157,7 +169,7 @@ export default function Compare() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Compare Cars</h1>
-              <p className="text-gray-600 mt-1">Side-by-side comparison of vehicles</p>
+              <p className="text-gray-600 mt-1">Compare different car models side-by-side</p>
             </div>
             <Link
               to="/cars/new"
@@ -172,50 +184,56 @@ export default function Compare() {
         <div className="space-y-8">
           {comparisons.map((comparison) => (
             <div key={comparison.id} className="bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="bg-blue-900 text-white p-4 text-center">
-                <h2 className="text-xl font-bold">
-                  New vs Used: {comparison.car1.title}
+              <div className="bg-linear-to-r from-blue-900 to-blue-700 text-white p-4">
+                <h2 className="text-xl font-bold text-center">
+                  {comparison.car1.title} vs {comparison.car2.title}
                 </h2>
               </div>
 
               <div className="p-6">
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  {/* Car 1 - New */}
-                  <CarCard
-                    id={comparison.car1.id}
-                    imageUrl={comparison.car1.imageUrl}
-                    title={comparison.car1.title}
-                    specsSubtitle={comparison.car1.specsSubtitle}
-                    mileage={comparison.car1.mileage}
-                    fuelType={comparison.car1.fuelType}
-                    transmission={comparison.car1.transmission}
-                    price={comparison.car1.price}
-                    detailsUrl={comparison.car1.detailsUrl}
-                    type={comparison.car1.type}
-                  />
+                  {/* Left Car */}
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-3 text-center">{comparison.car1.title}</h3>
+                    <CarCard
+                      id={comparison.car1.id}
+                      imageUrl={comparison.car1.imageUrl}
+                      title={comparison.car1.title}
+                      specsSubtitle={comparison.car1.specsSubtitle}
+                      mileage={comparison.car1.mileage}
+                      fuelType={comparison.car1.fuelType}
+                      transmission={comparison.car1.transmission}
+                      price={comparison.car1.price}
+                      detailsUrl={comparison.car1.detailsUrl}
+                      type={comparison.car1.type}
+                    />
+                  </div>
 
-                  {/* Car 2 - Used */}
-                  <CarCard
-                    id={comparison.car2.id}
-                    imageUrl={comparison.car2.imageUrl}
-                    title={comparison.car2.title}
-                    specsSubtitle={comparison.car2.specsSubtitle}
-                    mileage={comparison.car2.mileage}
-                    fuelType={comparison.car2.fuelType}
-                    transmission={comparison.car2.transmission}
-                    price={comparison.car2.price}
-                    detailsUrl={comparison.car2.detailsUrl}
-                    type={comparison.car2.type}
-                  />
+                  {/* Right Car */}
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-3 text-center">{comparison.car2.title}</h3>
+                    <CarCard
+                      id={comparison.car2.id}
+                      imageUrl={comparison.car2.imageUrl}
+                      title={comparison.car2.title}
+                      specsSubtitle={comparison.car2.specsSubtitle}
+                      mileage={comparison.car2.mileage}
+                      fuelType={comparison.car2.fuelType}
+                      transmission={comparison.car2.transmission}
+                      price={comparison.car2.price}
+                      detailsUrl={comparison.car2.detailsUrl}
+                      type={comparison.car2.type}
+                    />
+                  </div>
                 </div>
 
                 {/* Features Comparison */}
                 <div className="border-t pt-6">
                   <h3 className="text-lg font-bold text-gray-900 mb-4 text-center">Features Comparison</h3>
                   <div className="grid md:grid-cols-2 gap-6">
-                    {/* Car 1 Features */}
-                    <div className="bg-green-50 rounded-lg p-4">
-                      <h4 className="font-bold text-green-900 mb-3 text-center">{comparison.car1.type} Model</h4>
+                    {/* Left Car Features */}
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h4 className="font-bold text-blue-900 mb-3 text-center">{comparison.car1.title}</h4>
                       <div className="space-y-2">
                         {Object.entries(comparison.car1.features).map(([feature, available]) => (
                           <div key={feature} className="flex items-center gap-2">
@@ -232,9 +250,9 @@ export default function Compare() {
                       </div>
                     </div>
 
-                    {/* Car 2 Features */}
-                    <div className="bg-orange-50 rounded-lg p-4">
-                      <h4 className="font-bold text-orange-900 mb-3 text-center">{comparison.car2.type} Model</h4>
+                    {/* Right Car Features */}
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h4 className="font-bold text-purple-900 mb-3 text-center">{comparison.car2.title}</h4>
                       <div className="space-y-2">
                         {Object.entries(comparison.car2.features).map(([feature, available]) => (
                           <div key={feature} className="flex items-center gap-2">
